@@ -1,16 +1,15 @@
-const reqs = require('../utils/requests')
-const ServiceStatus = require('./../classes/ServiceStatus')
+import reqs from '../utils/requests'
+import ServiceStatus from '../classes/ServiceStatus'
 
-const MCAPI_MISC_STATS = require('./SalesStatistics')
+import MCAPI_MISC_STATS from './SalesStatistics'
+import MCAPIError from '../utils/MCAPIError'
  
 class MCAPI_MISC {
 
   /**
    * @static @attribute stats - Minecraft sales statistics
    */
-  static get stats() {
-    return MCAPI_MISC_STATS
-  }
+  static readonly stats = MCAPI_MISC_STATS
 
   /**
    * @static @method fetchStatus - Get the status of the Mojang's services
@@ -26,4 +25,7 @@ class MCAPI_MISC {
   )
 }
 
-module.exports = MCAPI_MISC
+export {
+   MCAPI_MISC,
+   MCAPI_MISC as default
+}

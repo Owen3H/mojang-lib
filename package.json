@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "node index.js"
   },
@@ -17,5 +18,8 @@
     "js-base64": "^2.4.9",
     "minecraft-data": "latest",
     "undici": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1"
   }
 }

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "lib": ["ES2022"],
+        "target": "ES6",
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "allowJs": true,
+        "checkJs": false,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "rootDir": "."
+    },
+    "include": ["lib", "package.json"],
+    "exclude": ["node_modules", "dist"]
+}
