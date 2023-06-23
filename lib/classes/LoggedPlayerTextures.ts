@@ -66,18 +66,18 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
       }).catch((err: Error) => {
         if (!(err instanceof MCAPIError))
           return reject(err)
-
-        if (err.code === 204) { // No content, as expected
+          
+        // No content, as expected
+        if (err.code === 204) {
           this.setAttributes(SLIM, url)
-          resolve(url)
+          return resolve(url)
         }
-        else {
-          const msg = err.code === 429 
+        
+        const msg = err.code === 429 
             ? "(skin from url) You have reached the API request limit"
             : "(skin from url) The image couldn't be retrieved from the url"
             
-          reject(new MCAPIError(err.code, msg))
-        }
+        return reject(new MCAPIError(err.code, msg))
       })
     })
   }

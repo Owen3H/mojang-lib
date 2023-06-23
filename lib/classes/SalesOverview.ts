@@ -4,12 +4,18 @@
  * Using same structure as Mojang's response body
  */
 class SalesOverview {
-  constructor(sales_type, data) {
-    this.total = data.total
-    this.last24h = data.last24h
-    this.velocity = data.saleVelocityPerSeconds
-    this.type = sales_type
+  #type: any
+
+  constructor(salesType: any, data: SalesData) {
+    this.#type = salesType
+    Object.assign(this, data)
   }
+}
+
+type SalesData = {
+  total: number
+  last24h: number 
+  velocity: any
 }
 
 export {
