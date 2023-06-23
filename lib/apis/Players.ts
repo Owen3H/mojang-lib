@@ -1,5 +1,5 @@
 import reqs from '../utils/requests'
-import RegularPlayer from './../classes/RegularPlayer'
+import RegularPlayer from '../classes/player/RegularPlayer'
 import MCAPIError from '../utils/MCAPIError'
 
 const profile_info_from_uuid = (uuid: string, option?: string) => {

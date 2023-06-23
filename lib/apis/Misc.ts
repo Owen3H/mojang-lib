@@ -1,5 +1,5 @@
 import reqs from '../utils/requests'
-import ServiceStatus from '../classes/ServiceStatus'
+import ServiceStatus from '../classes/misc/ServiceStatus'
 
 import MCAPI_MISC_STATS from './SalesStatistics'
 import MCAPIError from '../utils/MCAPIError'

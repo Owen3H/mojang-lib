@@ -1,4 +1,4 @@
-import Player, { PlayerIdentity } from './Player'
+import Player, { PlayerIdentity } from '../player/Player'
 
 /*
 *  @class

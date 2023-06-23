@@ -1,5 +1,5 @@
 import { Requests as reqs } from '../utils/requests'
-import Server from './../classes/Server'
+import Server from '../classes/server/Server'
 
 class MCAPI_SERVERS {
   /**

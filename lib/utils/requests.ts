@@ -2,7 +2,7 @@ import { request } from 'undici'
 import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError'
-import MinecraftPacket from '../classes/MinecraftPacket'
+import MinecraftPacket from '../classes/misc/MinecraftPacket'
 
 type PingParams = {
   address: string

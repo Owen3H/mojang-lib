@@ -1,5 +1,5 @@
-import reqs from '../utils/requests'
-import MCAPIError from '../utils/MCAPIError'
+import reqs from '../../utils/requests'
+import MCAPIError from '../../utils/MCAPIError'
 
 import RegularPlayerTextures from './RegularPlayerTextures'
 
