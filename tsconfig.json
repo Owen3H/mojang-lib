@@ -12,6 +12,6 @@
         "resolveJsonModule": true,
         "rootDir": "."
     },
-    "include": ["lib", "package.json"],
-    "exclude": ["lib/deprecated", "node_modules", "dist"]
+    "include": ["src", "package.json"],
+    "exclude": ["src/deprecated", "node_modules", "dist"]
 }
