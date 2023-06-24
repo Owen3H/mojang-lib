@@ -8,10 +8,10 @@ import LoggedPlayer from '../player/LoggedPlayer'
 class MinecraftProfile extends GameProfile {
   #player: any
 
-  legacy: boolean
-  suspended: boolean
-  premium: boolean
-  migrated: boolean
+  readonly legacy: boolean
+  readonly suspended: boolean
+  readonly premium: boolean
+  readonly migrated: boolean
 
   constructor(data: any, associated_account: any) {
     super(data, associated_account)

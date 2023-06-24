@@ -1,4 +1,5 @@
-import Player from './Player'
+
+import Player, { PlayerIdentity } from './Player'
 import RegularPlayerTextures from './RegularPlayerTextures'
 //const UsernameHistory = require('../deprecated/UsernameHistory')
 
@@ -7,7 +8,12 @@ import RegularPlayerTextures from './RegularPlayerTextures'
  * - Username history has been removed by Mojang.
  */
 class RegularPlayer extends Player {
-  constructor(data, logged = false) {
+  readonly legacy: boolean
+  readonly demo: boolean
+
+  textures: RegularPlayerTextures
+
+  constructor(data: PlayerIdentity, logged = false) {
     super(data)
 
     this.legacy = data.legacy || false

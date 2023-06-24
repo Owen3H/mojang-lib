@@ -2,10 +2,9 @@ import RegularPlayer from './RegularPlayer'
 import LoggedPlayerTextures from './LoggedPlayerTextures'
 import { PlayerProperty } from './Player'
 
-/** @class
- *  @desc Represents a logged in player's object
- *
- * Difference from a Regular Player : ability to manipulate the skin
+/** 
+ * @class @desc Represents a logged in player.
+ * - Has ability to manipulate their skin
  */
 class LoggedPlayer extends RegularPlayer {
   associated_account: any

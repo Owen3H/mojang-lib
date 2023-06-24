@@ -1,5 +1,5 @@
-/** @class
- *  @desc Represents statistics on sales
+/** 
+ * @class @desc Represents statistics on sales
  *
  * Using same structure as Mojang's response body
  */

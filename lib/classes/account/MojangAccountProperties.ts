@@ -1,8 +1,10 @@
-/**  @class
- * @desc Represents a Mojang account's general properties
+/**  
+ * @class @desc Represents a Mojang account's general properties
  */
 class MojangAccountProperties {
-  constructor(data) {
+  [name: string]: boolean | string
+
+  constructor(data: any) {
     const { user } = data
 
     this.suspended = user.suspended
@@ -17,4 +19,7 @@ class MojangAccountProperties {
   }
 }
 
-module.exports = MojangAccountProperties
+export { 
+  MojangAccountProperties,
+  MojangAccountProperties as default
+} 

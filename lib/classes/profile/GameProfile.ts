@@ -1,16 +1,18 @@
+import { ProfileProperty } from "../account/MojangAccount"
+
 /** @class
  *  @desc Represents a basic Mojang game profile
  */
 class GameProfile {
-  account: any
-  created: Date
+  readonly account: any
+  readonly created: Date
 
-  game: string
-  uuid: string | number
-  username: string
-  token: string
+  readonly game: string
+  readonly uuid: string | number
+  readonly username: string
+  readonly token: string
 
-  constructor(data: any, associated_account: any) {
+  constructor(data: ProfileProperty, associated_account: any) {
     const { createdAt, agent, id, name, tokenId } = data
 
     this.account = associated_account

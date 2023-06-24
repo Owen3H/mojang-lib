@@ -1,8 +1,7 @@
 import Player, { PlayerIdentity } from '../player/Player'
 
 /*
-*  @class
-*  @desc Represents the players in a server
+*  @class @desc Represents the players in a server
 */
 class ServerPlayers {
   #max: number

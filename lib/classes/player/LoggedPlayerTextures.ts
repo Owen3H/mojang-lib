@@ -3,18 +3,17 @@ import MCAPIError from '../../utils/MCAPIError'
 
 import RegularPlayerTextures from './RegularPlayerTextures'
 
-/** @class
- * @desc Represents a logged in minecraft player's skin and cape
- *
- * Difference from RegularPlayerTextures : extended to be able to manipulate skin
+/** 
+ * @class @desc Represents skin and cape of a logged in player.
+ * - Extends { @link RegularPlayerTextures } to be able to manipulate skin
  */
 class LoggedPlayerTextures extends RegularPlayerTextures {
-  associated_account: any
+  readonly associated_account: any
+  readonly player: any
+
   #_auth_header: {}
-  
-  player: any
-  slim: boolean
-  skin_url: string
+  #slim: boolean
+  #skin_url: string
 
   constructor(data: any, player: any, associated_account: any) {
     super(data)
@@ -40,19 +39,20 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
         return res
     }
     
-    this.skin_url = null
+    this.#skin_url = null
   }
 
+  getAttributes = () => ({ skinURL: this.skin_url, slim: this.slim })
   setAttributes = (slim: boolean, skinUrl: string) => {
-    this.slim = slim
-    this.skin_url = skinUrl
+    this.#slim = slim
+    this.#skin_url = skinUrl
   }
 
-  use_url_skin(url: string, slim: null | undefined | boolean) {
+  use_url_skin(url: string, slim: boolean) {
     return new Promise((resolve, reject) => {
       if (!url) return reject(new MCAPIError(400, "You must provide a url"))
 
-      let SLIM = this.slim
+      let SLIM = this.#slim
       if (slim !== undefined) {
         SLIM = slim ? true : false
       }

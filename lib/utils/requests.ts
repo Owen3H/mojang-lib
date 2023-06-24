@@ -3,10 +3,11 @@ import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError'
 import MinecraftPacket from '../classes/misc/MinecraftPacket'
+import { ServerData } from '../classes/server/Server'
 
 type PingParams = {
   address: string
-  port: number
+  port?: number
   protocol?: number
   timeout?: number
 }
@@ -51,7 +52,7 @@ class Requests {
    * @param  {Number} protocol The protocol to use for the ping
    * @param  {Number} timeout  Duration in ms before the connection times out
    */
-  static pingServer = async (pingParams: PingParams) => {
+  static pingServer = (pingParams: PingParams): ServerData => {
     const { address, port, protocol, timeout } = pingParams
 
     // The data in sent by little packets so we need a global buffer to store the sub buffers
@@ -88,20 +89,22 @@ class Requests {
       totalReadingDataBuffer.readVarInt()
       const response_data = totalReadingDataBuffer.readString()
 
-      return JSON.parse(response_data)
+      return JSON.parse(response_data) as ServerData
     })
 
     // Triggered when the connection times out (default 30s)
     client.on('timeout', () => {
       client.destroy()
-      return new MCAPIError(408, "Timed out")
+      throw new MCAPIError(408, "Timed out")
     })
 
     // Triggered when the connection fails
-    client.on('error', (err: Error) => {
+    client.on('error', (e: Error) => {
       client.destroy()
-      return err
+      throw e
     })
+
+    return null
   }
 }
 

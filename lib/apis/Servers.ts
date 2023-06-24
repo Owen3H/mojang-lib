@@ -17,20 +17,26 @@ class MCAPI_SERVERS {
   /**
    * @static @method get - Get a server's information
    *
-   * @param {String} host - The ip adress of the server optionnaly following with ":port"
-   * @param {Number} [port] - The port the server. If not asigned, the default Minecraft port will be used
+   * @param { String } host - The ip adress of the server optionnaly following with ":port"
+   * @param { Number } [port] - The port the server. If not asigned, the default Minecraft port will be used
    *
    */
-  static get = (host: any, port: number) => new Promise((resolve, reject) => {
+  static get = (host: string, port: number) => {
     // Handling play.host.com:port
-    let address = host.split(":")
+    let arr = host.split(":")
 
-    port = address.length > 1 ? host[1] : this.DEFAULT_PORT
-    address = host[0]
+    port = arr.length > 1 ? parseInt(arr[1]) : this.DEFAULT_PORT
+    const address = arr[0]
 
-    reqs.pingServer({ address, port: Number(port) }).then(data =>
-      resolve(new Server(data, address, port))).catch(reject)
-  })
+    try {
+      const data = reqs.pingServer({ address, port: port })
+      return new Server(data, address, port)
+    }
+    catch (e) {
+      console.error(e)
+      return null
+    }
+  }
 }
 
 export {
