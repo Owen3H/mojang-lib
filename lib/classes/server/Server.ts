@@ -1,18 +1,18 @@
-import { postNettyVersionsByProtocolVersion } from 'minecraft-data'
 import ServerPlayers, { ServerPlayerData } from './ServerPlayers'
+//import { postNettyVersionsByProtocolVersion } from 'minecraft-data'
 
-//@ts-ignore
-Array.prototype.last = function() {
-  return this[this.length-1]
-}
+// //@ts-ignore
+// Array.prototype.last = function() {
+//   return this[this.length-1]
+// }
 
-const protocolToVersion = (protocol: number) => {
-  const versions = postNettyVersionsByProtocolVersion.pc[protocol]
+// const protocolToVersion = (protocol: number) => {
+//   const versions = postNettyVersionsByProtocolVersion.pc[protocol]
   
-  //@ts-ignore
-  if (!versions?.length) return null //@ts-ignore
-  return versions.last().minecraftVersion
-}
+//   //@ts-ignore
+//   if (!versions?.length) return null //@ts-ignore
+//   return versions.last().minecraftVersion
+// }
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 
@@ -39,7 +39,6 @@ class Server {
 
     this.version = name
     this.protocol = protocol
-    this.version_from_protocol = protocolToVersion(protocol) || name
 
     this.host = host || 'localhost'
     this.port = port || 25565
