@@ -13,5 +13,5 @@
         "rootDir": "."
     },
     "include": ["lib", "package.json"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["lib/deprecated", "node_modules", "dist"]
 }

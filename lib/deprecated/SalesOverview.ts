@@ -4,10 +4,10 @@
  * Using same structure as Mojang's response body
  */
 class SalesOverview {
-  #type: any
+  readonly type: any
 
   constructor(salesType: any, data: SalesData) {
-    this.#type = salesType
+    this.type = salesType
     Object.assign(this, data)
   }
 }

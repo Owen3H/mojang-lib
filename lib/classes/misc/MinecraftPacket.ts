@@ -9,6 +9,8 @@ import { Socket } from "net"
  */
 class MinecraftPacket {
   buffer = Buffer.from(new Array(1))
+
+  //@ts-ignore
   #cursor = 0
 
   writeVarInt(val: number) {

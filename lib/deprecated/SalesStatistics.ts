@@ -1,5 +1,5 @@
 import reqs from '../utils/requests'
-import SalesOverview from '../classes/deprecated/SalesOverview'
+import SalesOverview from './SalesOverview'
 import MCAPIError from '../utils/MCAPIError'
 
 /** 
