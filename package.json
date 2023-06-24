@@ -15,7 +15,6 @@
   "author": "Owen77Stubbs",
   "license": "MIT",
   "dependencies": {
-    "js-base64": "^2.4.9",
     "minecraft-data": "latest",
     "undici": "latest"
   },

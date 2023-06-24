@@ -1,6 +1,7 @@
 import reqs from '../utils/requests'
 import MCAPIError from '../utils/MCAPIError'
 import MojangAccount from '../classes/account/MojangAccount'
+import MinecraftProfile from '../classes/profile/MinecraftProfile'
 
 var LOAD_ALL_MC_ACCOUNTS = false
 
@@ -20,7 +21,7 @@ class MCAPI_ACCOUNTS {
    * @param  { String } password The password of the user
    * @return { Promise } Promise of an instance of MojangAccount { @see MojangAccount }
    */
-  static async login(username_or_email, password) {
+  static async login(username_or_email: string, password: string) {
     if (!username_or_email || !password)
       return new MCAPIError(400, "(account login) The username and the password must be filled")
 
@@ -34,26 +35,30 @@ class MCAPI_ACCOUNTS {
       }
     }
 
-    const body = await reqs.POST("https://authserver.mojang.com/authenticate", { payload }).catch((err) => {
-        if (!(err instanceof MCAPIError))
-          return reject(err)
+    const body = await reqs.POST("https://authserver.mojang.com/authenticate", { payload }).catch(err => {
+        if (!(err instanceof MCAPIError)) return err
+        const msg = err.code == 429 
+          ? "(account login) You have reached the API request limit"
+          : "(account login) Username or password not recognized"
 
-        if (err.code === 403) 
-          return reject(new MCAPIError(404, "(account login) Username or password not recognized"))
-        if (err.code === 429) 
-          return reject(new MCAPIError(429, "(account login) You have reached the API request limit"))
+        return new MCAPIError(err.code, msg)
     })
 
-    const account = new MojangAccount(body)
-
-    const accProfiles = account.profiles
-    const profiles = this.LOAD_ALL_MC_ACCOUNTS ? accProfiles.list : [accProfiles.selected]
-    const len = profiles.length
+    if (!body) {
+      console.error(body)
+      return null
+    }
+    
+    const account = new MojangAccount(body),
+          accProfiles = account.profiles,
+          profiles = this.LOAD_ALL_MC_ACCOUNTS ? accProfiles.list : [accProfiles.selected],
+          len = profiles.length
 
     for (let i = 0; i < len; i++) {
-      const { player, game } = profiles[i]
-      if (!player && game === "minecraft")
-        await profile.loadPlayer()
+      const profile = profiles[i]
+      if (!(profile instanceof MinecraftProfile)) continue
+      if (!profile.player || profile.game == "minecraft")
+          await profile.loadPlayer()
     }
 
     return account
