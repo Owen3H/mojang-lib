@@ -14,10 +14,9 @@
         "skipDefaultLibCheck": true,
         "importHelpers": true,
         "declaration": true,
-        "types": ["node"],
-        "rootDir": "src"
+        "types": ["node"]
     },
-    "include": ["src", "package.json"],
+    "include": ["src"],
     "exclude": [
         "src/deprecated", 
         "node_modules", 
