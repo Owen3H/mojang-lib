@@ -1,6 +1,6 @@
-import MCAPI_PLAYERS from '../../apis/Players'
-import GameProfile from './GameProfile'
-import LoggedPlayer from '../player/LoggedPlayer'
+import MCAPI_PLAYERS from '../../apis/Players.js'
+import GameProfile from './GameProfile.js'
+import LoggedPlayer from '../player/LoggedPlayer.js'
 
 /** 
  * @class @desc Represents a user's Minecraft profile

@@ -1,6 +1,6 @@
-import reqs from '../utils/requests'
-import SalesOverview from './SalesOverview'
-import MCAPIError from '../utils/MCAPIError'
+import reqs from '../utils/requests.js'
+import SalesOverview from './SalesOverview.js'
+import MCAPIError from '../utils/MCAPIError.js'
 
 /** 
  *  @desc Gather Mojang statistics on game sales.

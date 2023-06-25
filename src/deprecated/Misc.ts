@@ -1,8 +1,8 @@
-import reqs from '../utils/requests'
-import ServiceStatus from '../classes/misc/ServiceStatus'
+import reqs from '../utils/requests.js'
+import ServiceStatus from '../classes/misc/ServiceStatus.js'
 
-import MCAPI_MISC_STATS from './SalesStatistics'
-import MCAPIError from '../utils/MCAPIError'
+import MCAPI_MISC_STATS from './SalesStatistics.js'
+import MCAPIError from '../utils/MCAPIError.js'
  
 class MCAPI_MISC {
 

@@ -1,7 +1,7 @@
-import reqs from '../../utils/requests'
-import MCAPIError from '../../utils/MCAPIError'
+import reqs from '../../utils/requests.js'
+import MCAPIError from '../../utils/MCAPIError.js'
 
-import RegularPlayerTextures from './RegularPlayerTextures'
+import RegularPlayerTextures from './RegularPlayerTextures.js'
 
 /** 
  * @class @desc Represents skin and cape of a logged in player.

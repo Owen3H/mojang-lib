@@ -1,5 +1,5 @@
-import { Requests as reqs } from '../utils/requests'
-import Server from '../classes/server/Server'
+import { Requests as reqs } from '../utils/requests.js'
+import Server from '../classes/server/Server.js'
 
 class MCAPI_SERVERS {
   /**

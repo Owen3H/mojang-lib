@@ -1,6 +1,6 @@
-import reqs from '../utils/requests'
-import RegularPlayer from '../classes/player/RegularPlayer'
-import MCAPIError from '../utils/MCAPIError'
+import reqs from '../utils/requests.js'
+import RegularPlayer from '../classes/player/RegularPlayer.js'
+import MCAPIError from '../utils/MCAPIError.js'
 
 const profileFromUUID = (uuid: string, option?: string) => {
   return new Promise((resolve, reject) => {

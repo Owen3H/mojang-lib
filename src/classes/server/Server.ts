@@ -1,18 +1,4 @@
-import ServerPlayers, { ServerPlayerData } from './ServerPlayers'
-//import { postNettyVersionsByProtocolVersion } from 'minecraft-data'
-
-// //@ts-ignore
-// Array.prototype.last = function() {
-//   return this[this.length-1]
-// }
-
-// const protocolToVersion = (protocol: number) => {
-//   const versions = postNettyVersionsByProtocolVersion.pc[protocol]
-  
-//   //@ts-ignore
-//   if (!versions?.length) return null //@ts-ignore
-//   return versions.last().minecraftVersion
-// }
+import ServerPlayers, { ServerPlayerData } from './ServerPlayers.js'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 

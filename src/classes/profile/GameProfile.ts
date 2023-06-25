@@ -1,4 +1,4 @@
-import { ProfileProperty } from "../account/MojangAccount"
+import { ProfileProperty } from "../account/MojangAccount.js"
 
 /** @class
  *  @desc Represents a basic Mojang game profile

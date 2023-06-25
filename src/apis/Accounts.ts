@@ -1,7 +1,7 @@
-import reqs from '../utils/requests'
-import MCAPIError from '../utils/MCAPIError'
-import MojangAccount from '../classes/account/MojangAccount'
-import MinecraftProfile from '../classes/profile/MinecraftProfile'
+import reqs from '../utils/requests.js'
+import MCAPIError from '../utils/MCAPIError.js'
+import MojangAccount from '../classes/account/MojangAccount.js'
+import MinecraftProfile from '../classes/profile/MinecraftProfile.js'
 
 var LOAD_ALL_MC_ACCOUNTS = false
 

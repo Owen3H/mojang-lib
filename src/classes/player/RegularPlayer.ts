@@ -1,6 +1,6 @@
 
-import Player, { PlayerIdentity } from './Player'
-import RegularPlayerTextures from './RegularPlayerTextures'
+import Player, { PlayerIdentity } from './Player.js'
+import RegularPlayerTextures from './RegularPlayerTextures.js'
 
 /** 
  * @class @desc Represents a regular player's name, uuid & skin info.

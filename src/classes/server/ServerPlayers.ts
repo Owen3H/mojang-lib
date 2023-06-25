@@ -1,4 +1,4 @@
-import Player, { PlayerIdentity } from '../player/Player'
+import Player, { PlayerIdentity } from '../player/Player.js'
 
 /*
 *  @class @desc Represents the players in a server

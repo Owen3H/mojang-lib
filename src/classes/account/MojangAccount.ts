@@ -1,5 +1,5 @@
-import MojangAccountProperties from './MojangAccountProperties'
-import MojangAccountProfiles from './MojangAccountProfiles'
+import MojangAccountProperties from './MojangAccountProperties.js'
+import MojangAccountProfiles from './MojangAccountProfiles.js'
 
 /**  
  * @class @desc Represents a Mojang Account

@@ -1,7 +1,7 @@
-import GameProfile from '../profile/GameProfile'
-import MinecraftProfile from '../profile/MinecraftProfile'
-import OtherProfile from '../profile/OtherProfile'
-import { MojangAccountData } from './MojangAccount'
+import GameProfile from '../profile/GameProfile.js'
+import MinecraftProfile from '../profile/MinecraftProfile.js'
+import OtherProfile from '../profile/OtherProfile.js'
+import { MojangAccountData } from './MojangAccount.js'
 
 /**  
  * @class @desc Represents a Mojang Account's game profiles

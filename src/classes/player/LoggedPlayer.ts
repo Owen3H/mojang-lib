@@ -1,6 +1,6 @@
-import RegularPlayer from './RegularPlayer'
-import LoggedPlayerTextures from './LoggedPlayerTextures'
-import { PlayerProperty } from './Player'
+import RegularPlayer from './RegularPlayer.js'
+import LoggedPlayerTextures from './LoggedPlayerTextures.js'
+import { PlayerProperty } from './Player.js'
 
 /** 
  * @class @desc Represents a logged in player.

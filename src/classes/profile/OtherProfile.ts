@@ -1,5 +1,5 @@
-import { ProfileProperty } from '../account/MojangAccount'
-import GameProfile from './GameProfile'
+import { ProfileProperty } from '../account/MojangAccount.js'
+import GameProfile from './GameProfile.js'
 
 /**  
  * @class @desc Represents a Mojang game profile other than Minecraft

@@ -1,6 +1,6 @@
-import MCAPI_PLAYERS from './apis/Players'
-import MCAPI_SERVERS from './apis/Servers'
-import MCAPI_ACCOUNTS from './apis/Accounts'
+import MCAPI_PLAYERS from './apis/Players.js'
+import MCAPI_SERVERS from './apis/Servers.js'
+import MCAPI_ACCOUNTS from './apis/Accounts.js'
 
 // @ts-ignore
 import { version } from '../package.json'

@@ -12,6 +12,7 @@
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
     "build:esm": "tsc"
   },
+  "funding": "https://github.com/sponsors/Owen3H",
   "repository": {
     "type": "git",
     "url": "https://github.com/Owen3H/mojang-lib.git"

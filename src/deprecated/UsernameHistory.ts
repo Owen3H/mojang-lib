@@ -1,4 +1,4 @@
-type History = [{
+type UserHistory = [{
   name: string,
   changedToAt: number
 }]
@@ -11,7 +11,7 @@ type History = [{
 class UsernameHistory {
   _history: Map<string, number>
 
-  constructor(history: History) {
+  constructor(history: UserHistory) {
     this._history = new Map()
     history.forEach(el => {
       this._history.set(el.name, el.changedToAt || -Infinity)
