@@ -14,7 +14,7 @@ class RegularPlayerTextures {
   constructor(textureData: any, player?: any) {
     const { textures, timestamp } = JSON.parse(Base64.decode(textureData))
 
-    this.player = player
+    if (player) this.player = player
     this.uploaded_time = timestamp
     
     const skinTex = textures.SKIN,

@@ -1,4 +1,4 @@
-import { request } from 'undici'
+import { request, Dispatcher } from 'undici'
 import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError.js'
@@ -13,52 +13,55 @@ type PingParams = {
 }
 
 class Requests {
+  static #send = async (url: string, opts: any, method?: Dispatcher.HttpMethod) => {
+    const options: any = null
+
+    if (method) options.method = method
+    if (opts?.payload) options.body = opts.payload
+    if (opts?.headers) options.headers = opts.headers || {
+      Authorization: `Bearer ${opts}`
+    }
+
+    return await request(url, options)
+  }
 
   /**
    * @static @method GET - HTTP GET method
    *
-   * @param  {String} url The url to GET
+   * @param { String } url The url to GET
    */
-  static GET = (url: string, opts = {}) => request(url, opts)
+  static GET = (url: string, opts?: {}) => this.#send(url, opts)
 
   /**
    * @static @method POST - HTTP POST method
    *
-   * @param  {String}  url   The url to POST
-   * @param  {Object}  opts  Options of the request
+   * @param { String }  url   The url to POST
+   * @param { Object }  opts  Options of the request
    */
-  static POST = (url: string, opts: any) => request(url, {
-    method: "POST",
-    body: JSON.stringify(opts.payload),
-    headers: opts.headers || {}
-  })
+  static POST = (url: string, opts?: {}) => this.#send(url, opts, "POST")
 
   /**
    * @static @method DELETE - HTTP DELETE method
    *
-   * @param  {String}  url   The url to DELETE
-   * @param  {Object}  opts  Options of the request
+   * @param { String }  url   The url to DELETE
+   * @param { Object }  opts  Options of the request
    */
-  static DELETE = (url: string, opts: any) => request(url, { 
-    method: "DELETE",
-    headers: opts.headers || {}
-  })
+  static DELETE = (url: string, opts?: {}) => this.#send(url, opts, "DELETE")
 
   /**
    * @static @method pingServer - Pings a Minecraft server
    *
-   * @param  {String} address  The server IP address
-   * @param  {Number} port     The server port number
-   * @param  {Number} protocol The protocol to use for the ping
-   * @param  {Number} timeout  Duration in ms before the connection times out
+   * @param { String } address  The server IP address
+   * @param { Number } port     The server port number
+   * @param { Number } protocol The protocol to use for the ping
+   * @param { Number } timeout  Duration in ms before the connection times out
    */
   static pingServer = (pingParams: PingParams): Promise<ServerData> => {
     return new Promise((resolve, reject) => {
-      const { address, port, protocol, timeout } = pingParams
-
-      const totalReadingDataBuffer = new MinecraftPacket()
-      const client = new Socket()
-  
+      const { address, port, protocol, timeout } = pingParams,
+            totalReadingDataBuffer = new MinecraftPacket(),
+            client = new Socket()
+            
       client.setTimeout(timeout ?? 30000)
       client.connect(port, address)
   

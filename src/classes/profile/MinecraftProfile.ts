@@ -26,7 +26,7 @@ class MinecraftProfile extends GameProfile {
   }
 
   loadPlayer = async () => {
-    const data = await MCAPI_PLAYERS.get(this.username, "RAW_RESULTS")
+    const data = await MCAPI_PLAYERS.get(this.username, true)
     this._player = new LoggedPlayer(data, this.account)
   }
 }

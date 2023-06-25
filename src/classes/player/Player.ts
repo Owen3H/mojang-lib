@@ -1,5 +1,5 @@
-/*
-*  @class @desc Represents a player with its minimal info (uuid and username)
+/**  
+* @class @desc Represents a player with its minimal info (uuid and username)
 */
 class Player {
   constructor(data: any) {

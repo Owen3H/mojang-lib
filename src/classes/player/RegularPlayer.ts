@@ -21,8 +21,8 @@ class RegularPlayer extends Player {
     if (!logged) {
       const texturesProp = data.properties?.find(prop => prop.name === "textures")
 
-      if (texturesProp?.value)
-        this.textures = new RegularPlayerTextures(texturesProp.value, this)
+      if (texturesProp?.value) 
+        this.textures = new RegularPlayerTextures(texturesProp.value)
     }
   }
 }
