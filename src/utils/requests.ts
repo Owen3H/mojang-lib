@@ -13,6 +13,7 @@ type PingParams = {
 }
 
 class Requests {
+  //@ts-ignore
   static #send = async (url: string, opts: any, method?: Dispatcher.HttpMethod) => {
     const options: any = null
 
