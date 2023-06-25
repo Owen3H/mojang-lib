@@ -17,7 +17,15 @@
     "type": "git",
     "url": "https://github.com/Owen3H/mojang-lib.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mojang", 
+    "minecraft", 
+    "minecraft-lib", 
+    "mojang-api", 
+    "typescript",
+    "api-wrapper",
+    "node"
+  ],
   "author": "Owen77Stubbs",
   "license": "MIT",
   "dependencies": {
