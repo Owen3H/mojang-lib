@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
