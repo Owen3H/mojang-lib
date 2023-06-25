@@ -9,17 +9,14 @@ import RegularPlayerTextures from './RegularPlayerTextures.js'
  */
 class LoggedPlayerTextures extends RegularPlayerTextures {
   readonly associated_account: any
-  readonly player: any
 
   //@ts-ignore
   #_auth_header: {}
 
-  constructor(data: any, player: any, associated_account: any) {
+  constructor(data: any, associated_account: any) {
     super(data)
 
-    this.player = player
     this.associated_account = associated_account
-
     this.#_auth_header = { 
       "Authorization": `Bearer ${associated_account._tokens.access}`
     }
@@ -42,7 +39,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
   }
   
   resetSkin = async (): Promise<boolean | MCAPIError> => {
-    const url = `https://api.mojang.com/user/profile/${this.player.uuid}/skin`
+    const url = ``
     const res = await reqs.DELETE(url, { headers: this.#_auth_header })
 
     if (res instanceof MCAPIError) {
@@ -70,7 +67,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
         SLIM = slim ? true : false
       }
 
-      const endpoint = `https://api.mojang.com/user/profile/${this.player.uuid}/skin`
+      const endpoint = ``
       const body = `model="${(SLIM ? "slim" : "")}"&url=${url}`
 
       reqs.POST(endpoint, { 

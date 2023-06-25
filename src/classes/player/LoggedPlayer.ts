@@ -9,15 +9,14 @@ import { PlayerProperty } from './Player.js'
 class LoggedPlayer extends RegularPlayer {
   readonly associated_account: any
   
-  constructor(data: any, associated_account: any) {
-    super(data, true)
+  constructor(playerData: any, associated_account: any) {
+    super(playerData, true)
 
     this.associated_account = associated_account
 
-    const texturesProp = data.properties?.find((prop: PlayerProperty) => prop.name === "textures")
-    if (texturesProp?.value) {
-      this.textures = new LoggedPlayerTextures(texturesProp.value, this, associated_account)
-    }
+    const texturesProp = playerData.properties?.find((prop: PlayerProperty) => prop.name === "textures")
+    if (texturesProp?.value)
+      this.textures = new LoggedPlayerTextures(texturesProp.value, associated_account)
   }
 }
 

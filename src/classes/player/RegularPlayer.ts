@@ -12,14 +12,16 @@ class RegularPlayer extends Player {
 
   textures: RegularPlayerTextures
 
-  constructor(data: PlayerIdentity, logged = false) {
-    super(data)
+  constructor(playerData: PlayerIdentity, logged = false) {
+    super(playerData)
 
-    this.legacy = data.legacy || false
-    this.demo = data.demo || false
+    const { legacy, demo, properties } = playerData
+
+    this.legacy = legacy || false
+    this.demo = demo || false
 
     if (!logged) {
-      const texturesProp = data.properties?.find(prop => prop.name === "textures")
+      const texturesProp = properties?.find(prop => prop.name === "textures")
 
       if (texturesProp?.value) 
         this.textures = new RegularPlayerTextures(texturesProp.value)

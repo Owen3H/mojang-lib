@@ -2,13 +2,18 @@
 * @class @desc Represents a player with its minimal info (uuid and username)
 */
 class Player {
-  constructor(data: any) {
-    Object.assign(this, data)
+  readonly uuid: string
+  readonly username: string
+  readonly properties: PlayerProperty[]
+
+  constructor(data: PlayerIdentity) {
+    this.uuid = data.id
+    this.username = data.name
   }
 }
 
 export type PlayerIdentity = {
-  demo: boolean
+  demo?: boolean
   name: string
   id: string
   properties: PlayerProperty[]

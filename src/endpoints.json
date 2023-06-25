@@ -1,0 +1,21 @@
+{
+    "blocked": "https://sessionserver.mojang.com/blockedservers",
+    "password": "https://api.mojang.com/users/password",
+    "authenticate": "https://authserver.mojang.com/authenticate",
+    "store": "https://api.minecraftservices.com/entitlements/mcstore",
+    "redeem": "https://api.minecraftservices.com/productvoucher",
+    "user": "https://api.mojang.com/user",
+    "profile": {
+        "user": "https://sessionserver.mojang.com/session/minecraft/profile/",
+        "new": "https://api.minecraftservices.com/minecraft/profile",
+        "old": "https://api.mojang.com/user/profiles"
+    },
+    "skin": {
+        "list": "https://api.minecraftservices.com/minecraft/profile/skins",
+        "active": "https://api.minecraftservices.com/minecraft/profile/skins/active"
+    },
+    "capes": {
+        "list": "https://api.minecraftservices.com/minecraft/profile/capes",
+        "active": "https://api.minecraftservices.com/minecraft/profile/capes/active"
+    }
+}
