@@ -4,18 +4,10 @@ import MCAPIError from '../utils/MCAPIError'
 
 const profileFromUUID = (uuid: string, option?: string) => {
   return new Promise((resolve, reject) => {
-    reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid).then((body: any) => {
-        const userData = body
+    reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid).then(async (res: any) => {
+        const userData = await res.body.json()
         const isRaw = option === "RAW_RESULTS"
         return resolve(isRaw ? userData : new RegularPlayer(userData))
-
-        // reqs.GET("https://api.mojang.com/user/profiles/" + uuid + "/names").then(async res => {
-        //     userData.name_history = await res.body.json()
-        //   }).catch((err: any) => {
-        //     if (err instanceof MCAPIError && err.code === 204) reject(new MCAPIError(204, "(username history fetcher) UUID not recognized"))
-        //     else if (err instanceof MCAPIError && err.code === 429) reject(new MCAPIError(429, "(username history fetcher) You have reached the API request limit"))
-        //     else reject(err)
-        //   })
       }).catch((err: any) => {
         if (!(err instanceof MCAPIError)) return reject(err)
         if (err.code === 204) return reject(new MCAPIError(204, "(textures fetcher) UUID not recognized"))
@@ -30,7 +22,7 @@ class MCAPI_PLAYERS {
    *
    * @param { String } username The user's name
    */
-  static get(username: string, option: string) {
+  static get(username: string, option?: string) {
     return new Promise((resolve, reject) => {
       reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username)
         .then(async res => {

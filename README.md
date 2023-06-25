@@ -9,9 +9,29 @@ npm i mojang-lib
 ```
 
 ## Usage
+
+### ESM
+```js
+import MCAPI from "mojang-lib"
+
+const server = await MCAPI.servers.get('play.earthmc.net')
+console.log(server)
+
+const player = await MCAPI.players.get('Owen3H')
+console.log(player)
 ```
-import { MCAPI_ } from 'mojang-lib'
 
-await MCAPI_
+### CommonJS
+```js
+const { MCAPI } = require("mojang-lib")
 
+const runTest = async () => {
+  const server = await MCAPI.servers.get('play.earthmc.net')
+  console.log(server)
+
+  const player = await MCAPI.players.get('Owen3H')
+  console.log(player)
+}
+
+runTest()
 ```
