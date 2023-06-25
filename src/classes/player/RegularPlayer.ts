@@ -1,7 +1,6 @@
 
 import Player, { PlayerIdentity } from './Player'
 import RegularPlayerTextures from './RegularPlayerTextures'
-//const UsernameHistory = require('../deprecated/UsernameHistory')
 
 /** 
  * @class @desc Represents a regular player's name, uuid & skin info.
@@ -19,13 +18,11 @@ class RegularPlayer extends Player {
     this.legacy = data.legacy || false
     this.demo = data.demo || false
 
-    //this.username_history = new UsernameHistory(data.name_history)
+    if (!logged) {
+      const texturesProp = data.properties?.find(prop => prop.name === "textures")
 
-    if (logged) return
-
-    const texturesProp = data.properties?.find(prop => prop.name === "textures")
-    if (texturesProp?.value) {
-      this.textures = new RegularPlayerTextures(texturesProp.value, this)
+      if (texturesProp?.value)
+        this.textures = new RegularPlayerTextures(texturesProp.value, this)
     }
   }
 }

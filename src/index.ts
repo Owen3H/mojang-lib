@@ -1,15 +1,14 @@
-import MCAPI_PLAYERS from './lib/apis/Players'
-import MCAPI_SERVERS from './lib/apis/Servers'
-import MCAPI_ACCOUNTS from './lib/apis/Accounts'
+import MCAPI_PLAYERS from './apis/Players'
+import MCAPI_SERVERS from './apis/Servers'
+import MCAPI_ACCOUNTS from './apis/Accounts'
 
 // @ts-ignore
-import { version } from './package.json'
+import { version } from '../package.json'
 
 class MCAPI {
-
-  static readonly players = MCAPI_PLAYERS
-  static readonly servers = MCAPI_SERVERS
   static readonly accounts = MCAPI_ACCOUNTS
+  static readonly players  = MCAPI_PLAYERS
+  static readonly servers  = MCAPI_SERVERS
 
   /**
    * @static @attribute version - Current package version

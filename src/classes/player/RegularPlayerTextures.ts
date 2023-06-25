@@ -7,9 +7,9 @@ class RegularPlayerTextures {
   readonly player: any
   readonly uploaded_time: number
 
-  readonly skin_url: any
-  readonly cape_url: any
-  readonly slim: boolean
+  skin_url: any
+  cape_url: any
+  slim: boolean
 
   constructor(textureData: any, player?: any) {
     const { textures, timestamp } = JSON.parse(Base64.decode(textureData))

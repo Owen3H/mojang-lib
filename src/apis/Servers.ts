@@ -8,28 +8,31 @@ class MCAPI_SERVERS {
   static readonly DEFAULT_PORT = 25565
 
   /**
-   * @static @method blockedServers - Get the list of SHA1 encoded blocked servers ips
+   * @static @method blockedServers - Get the list of SHA1 encoded blocked servers IPs
    */
-  static blockedServers = () => new Promise((resolve, reject) =>
-      reqs.GET("https://sessionserver.mojang.com/blockedservers")
-        .then((data: any) => resolve(data.split("\n"))).catch(reject))
+  static blockedServers = async () => {
+    const serverList = await reqs.GET("https://sessionserver.mojang.com/blockedservers")
+        .then(res => res.body.text()).catch(console.error)
+
+    if (!serverList) return null
+    return serverList.split("\n")
+  }
     
   /**
-   * @static @method get - Get a server's information
+   * @static @method get - Retrieve server information.
    *
-   * @param { String } host - The ip adress of the server optionnaly following with ":port"
-   * @param { Number } [port] - The port the server. If not asigned, the default Minecraft port will be used
-   *
+   * @param { String } host   - The IP address of the server. Allows ":port" postfix.
+   * @param { Number } [port] - The port to use, defaults to `25565` if not passed.
    */
-  static get = (host: string, port: number) => {
+  static get = async (host: string, port?: number) => {
     // Handling play.host.com:port
     let arr = host.split(":")
-
-    port = arr.length > 1 ? parseInt(arr[1]) : this.DEFAULT_PORT
     const address = arr[0]
 
+    port = arr.length > 1 ? parseInt(arr[1]) : this.DEFAULT_PORT
+
     try {
-      const data = reqs.pingServer({ address, port: port })
+      const data = await reqs.pingServer({ address, port })
       return new Server(data, address, port)
     }
     catch (e) {

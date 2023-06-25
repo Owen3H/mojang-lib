@@ -52,59 +52,51 @@ class Requests {
    * @param  {Number} protocol The protocol to use for the ping
    * @param  {Number} timeout  Duration in ms before the connection times out
    */
-  static pingServer = (pingParams: PingParams): ServerData => {
-    const { address, port, protocol, timeout } = pingParams
+  static pingServer = (pingParams: PingParams): Promise<ServerData> => {
+    return new Promise((resolve, reject) => {
+      const { address, port, protocol, timeout } = pingParams
 
-    // The data in sent by little packets so we need a global buffer to store the sub buffers
-    const totalReadingDataBuffer = new MinecraftPacket(),
-          client = new Socket()
-
-    // Setting the max delay to wait for the server response
-    client.setTimeout(timeout)
-    client.connect(port, address)
-
-    // Triggered once the connection is established -> sending handshake
-    client.on("connect", () => {
-      const handshake = new MinecraftPacket()
-      handshake.writeVarInt(0)
-      handshake.writeVarInt(protocol)
-      handshake.writeString(address)
-      handshake.writeUShort(port)
-      handshake.writeVarInt(1)
-      handshake.send(client)
-
-      const legacyPing = new MinecraftPacket()
-      legacyPing.writeVarInt(0)
-      legacyPing.send(client)
+      const totalReadingDataBuffer = new MinecraftPacket()
+      const client = new Socket()
+  
+      client.setTimeout(timeout ?? 30000)
+      client.connect(port, address)
+  
+      client.on("connect", () => {
+        const handshake = new MinecraftPacket()
+        handshake.writeVarInt(0)
+        handshake.writeVarInt(protocol)
+        handshake.writeString(address)
+        handshake.writeUShort(port)
+        handshake.writeVarInt(1)
+        handshake.send(client)
+  
+        const legacyPing = new MinecraftPacket()
+        legacyPing.writeVarInt(0)
+        legacyPing.send(client)
+      })
+  
+      client.on('data', (data) => {
+        totalReadingDataBuffer.buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
+        client.end()
+      })
+  
+      client.on('close', () => {
+        totalReadingDataBuffer.readVarInt()
+        const response_data = totalReadingDataBuffer.readString()
+        resolve(JSON.parse(response_data))
+      })
+  
+      client.on('timeout', () => {
+        client.destroy()
+        reject(new MCAPIError(408, "Timed out"))
+      })
+  
+      client.on('error', (e: Error) => {
+        client.destroy()
+        reject(e)
+      })
     })
-
-    // New data received, add to the buffer.
-    client.on('data', (data) => {
-      totalReadingDataBuffer.buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
-      client.end()
-    })
-
-    // Triggered when the connection shut down (error occurred or server finished sending data)
-    client.on('close', () => {
-      totalReadingDataBuffer.readVarInt()
-      const response_data = totalReadingDataBuffer.readString()
-
-      return JSON.parse(response_data) as ServerData
-    })
-
-    // Triggered when the connection times out (default 30s)
-    client.on('timeout', () => {
-      client.destroy()
-      throw new MCAPIError(408, "Timed out")
-    })
-
-    // Triggered when the connection fails
-    client.on('error', (e: Error) => {
-      client.destroy()
-      throw e
-    })
-
-    return null
   }
 }
 

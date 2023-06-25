@@ -1,17 +1,26 @@
 {
     "compilerOptions": {
-        "module": "NodeNext",
+        "module": "ES2022",
         "lib": ["ES2022"],
-        "target": "ES6",
+        "target": "ES2017",
         "esModuleInterop": true,
         "noImplicitAny": true,
         "allowJs": true,
-        "checkJs": false,
+        "checkJs": true,
         "moduleResolution": "node",
-        "outDir": "dist",
+        "outDir": "dist/esm",
         "resolveJsonModule": true,
-        "rootDir": "."
+        "removeComments": true,
+        "skipDefaultLibCheck": true,
+        "importHelpers": true,
+        "declaration": true,
+        "types": ["node"],
+        "rootDir": "src"
     },
     "include": ["src", "package.json"],
-    "exclude": ["src/deprecated", "node_modules", "dist"]
+    "exclude": [
+        "src/deprecated", 
+        "node_modules", 
+        "dist"
+    ]
 }

@@ -7,7 +7,7 @@ import { PlayerProperty } from './Player'
  * - Has ability to manipulate their skin
  */
 class LoggedPlayer extends RegularPlayer {
-  associated_account: any
+  readonly associated_account: any
   
   constructor(data: any, associated_account: any) {
     super(data, true)

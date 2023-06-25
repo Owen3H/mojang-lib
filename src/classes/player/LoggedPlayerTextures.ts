@@ -11,9 +11,8 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
   readonly associated_account: any
   readonly player: any
 
+  //@ts-ignore
   #_auth_header: {}
-  #slim: boolean
-  #skin_url: string
 
   constructor(data: any, player: any, associated_account: any) {
     super(data)
@@ -39,20 +38,20 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
         return res
     }
     
-    this.#skin_url = null
+    this.skin_url = null
   }
 
   getAttributes = () => ({ skinURL: this.skin_url, slim: this.slim })
   setAttributes = (slim: boolean, skinUrl: string) => {
-    this.#slim = slim
-    this.#skin_url = skinUrl
+    this.slim = slim
+    this.skin_url = skinUrl
   }
 
   use_url_skin(url: string, slim: boolean) {
     return new Promise((resolve, reject) => {
       if (!url) return reject(new MCAPIError(400, "You must provide a url"))
 
-      let SLIM = this.#slim
+      let SLIM = this.slim
       if (slim !== undefined) {
         SLIM = slim ? true : false
       }

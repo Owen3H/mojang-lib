@@ -17,7 +17,7 @@ import ServerPlayers, { ServerPlayerData } from './ServerPlayers'
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 
 const formatMOTD = (motd: string) => {
-  if (!motd) return
+  if (!motd) return ''
 
   const lines = motd.split(/\n|\r/g)
   return lines.map(line => {
@@ -30,9 +30,17 @@ const formatMOTD = (motd: string) => {
  * @class @desc Represents a pinged server with its general info
  */
 class Server {
-  [name: string]: any
+  readonly version: string
+  readonly protocol: number
+  readonly host: string
+  readonly port: number
+  readonly favicon: string
+  readonly players: ServerPlayers
+  readonly motd: { raw: string, formatted: string }
 
   constructor(data: ServerData, host: string, port: number) {
+    if (!data) throw new Error("Error getting server, data is null!")
+
     const { favicon, players, description, version } = data
     const { name, protocol } = version
     const motdText = description.text
@@ -47,7 +55,7 @@ class Server {
 
     this.motd = { 
       raw: motdText, 
-      formatted: formatMOTD(motdText) 
+      formatted: formatMOTD(motdText)
     }
   }
 }
