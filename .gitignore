@@ -46,4 +46,4 @@ out
 
 # Custom Exclusions
 dist/
-test.*
+test-pkg/

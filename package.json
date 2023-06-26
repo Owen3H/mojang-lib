@@ -2,9 +2,9 @@
   "name": "mojang-lib",
   "version": "1.4.0",
   "description": "A modern wrapper for interacting with the Mojang API.",
-  "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -18,11 +18,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "npx tsx test.ts",
+    "test": "cd test-pkg && npm run test",
     "prebuild": "rimraf dist",
     "build": "npm run prebuild && npm run build:esm && npm run build:cjs",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
-    "build:esm": "tsc"
+    "build:esm": "tsc",
+    "tsup": "tsup src/index.ts --format esm,cjs --legacy-output"
   },
   "funding": "https://github.com/sponsors/Owen3H",
   "repository": {
