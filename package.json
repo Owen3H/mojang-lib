@@ -11,7 +11,7 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files:": [
+  "files": [
     "dist",
     "README.md",
     "CHANGES.md",
