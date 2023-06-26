@@ -22,6 +22,8 @@
     "exclude": [
         "src/deprecated", 
         "node_modules", 
-        "dist"
+        "dist",
+        "tsconfig.json",
+        "test-pkg"
     ]
 }
