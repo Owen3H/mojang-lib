@@ -10,15 +10,15 @@ import RegularPlayerTextures from './RegularPlayerTextures.js'
 class LoggedPlayerTextures extends RegularPlayerTextures {
   readonly associated_account: any
 
-  //@ts-ignore
-  #_auth_header: {}
+  _authHeader: {}
+  get authHeader() { return this._authHeader }
 
   constructor(data: any, associated_account: any) {
     super(data)
 
     this.associated_account = associated_account
-    this.#_auth_header = { 
-      "Authorization": `Bearer ${associated_account._tokens.access}`
+    this._authHeader = { 
+      Authorization: `Bearer ${associated_account._tokens.access}`
     }
   }
 
@@ -34,13 +34,13 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
       return null
     }
 
-    const res = await reqs.POST(url, { headers: this.#_auth_header })
+    const res = await reqs.POST(url, { headers: this.authHeader })
     return res.statusCode
   }
   
   resetSkin = async (): Promise<boolean | MCAPIError> => {
     const url = ``
-    const res = await reqs.DELETE(url, { headers: this.#_auth_header })
+    const res = await reqs.DELETE(url, { headers: this.authHeader })
 
     if (res instanceof MCAPIError) {
       if (res.statusCode === 429) {
@@ -72,7 +72,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
 
       reqs.POST(endpoint, { 
         payload: body,
-        headers: this.#_auth_header 
+        headers: this.authHeader
       }).then(() => {
           this.setAttributes(SLIM, url)
           resolve(url)

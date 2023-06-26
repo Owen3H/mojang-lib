@@ -14,7 +14,7 @@ type PingParams = {
 
 class Requests {
   //@ts-ignore
-  static #send = async (url: string, opts: any, method?: Dispatcher.HttpMethod) => {
+  private static send = async (url: string, opts: any, method?: Dispatcher.HttpMethod) => {
     const options: any = null
 
     if (method) options.method = method
@@ -31,7 +31,7 @@ class Requests {
    *
    * @param { String } url The url to GET
    */
-  static GET = (url: string, opts?: {}) => this.#send(url, opts)
+  static GET = (url: string, opts?: {}) => this.send(url, opts)
 
   /**
    * @static @method POST - HTTP POST method
@@ -39,7 +39,7 @@ class Requests {
    * @param { String }  url   The url to POST
    * @param { Object }  opts  Options of the request
    */
-  static POST = (url: string, opts?: {}) => this.#send(url, opts, "POST")
+  static POST = (url: string, opts?: {}) => this.send(url, opts, "POST")
 
   /**
    * @static @method DELETE - HTTP DELETE method
@@ -47,7 +47,7 @@ class Requests {
    * @param { String }  url   The url to DELETE
    * @param { Object }  opts  Options of the request
    */
-  static DELETE = (url: string, opts?: {}) => this.#send(url, opts, "DELETE")
+  static DELETE = (url: string, opts?: {}) => this.send(url, opts, "DELETE")
 
   /**
    * @static @method pingServer - Pings a Minecraft server
