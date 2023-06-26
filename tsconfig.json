@@ -1,20 +1,22 @@
 {
     "compilerOptions": {
         "module": "ES2022",
-        "lib": ["ES2022"],
-        "target": "ES6",
+        "target": "ES2017",
         "esModuleInterop": true,
         "noImplicitAny": true,
         "allowJs": true,
         "checkJs": true,
-        "moduleResolution": "node",
+        "moduleResolution": "NodeNext",
         "outDir": "dist/esm",
         "resolveJsonModule": true,
         "removeComments": true,
         "skipDefaultLibCheck": true,
         "importHelpers": true,
         "declaration": true,
-        "types": ["node"]
+        "types": ["node"],
+        "paths": {
+            "tslib": [ "../tslib/tslib.d.ts" ]
+        }
     },
     "include": ["src"],
     "exclude": [

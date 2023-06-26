@@ -81,7 +81,7 @@ class Requests {
       })
   
       client.on('data', (data) => {
-        totalReadingDataBuffer.buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
+        totalReadingDataBuffer._buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
         client.end()
       })
   

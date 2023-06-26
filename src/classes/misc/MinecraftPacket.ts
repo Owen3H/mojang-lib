@@ -8,10 +8,11 @@ import { Socket } from "net"
  *  @see {@link https://wiki.vg/Server_List_Ping|Server List Ping}
  */
 class MinecraftPacket {
-  buffer = Buffer.from(new Array(1))
+  _buffer = Buffer.from(new Array(1))
+  get buffer() { return this._buffer }
 
-  //@ts-ignore
-  #cursor = 0
+  _cursor = 0
+  get cursor() { return this._cursor }
 
   writeVarInt(val: number) {
     do {
@@ -23,14 +24,14 @@ class MinecraftPacket {
   }
 
   addToBuffer = (num: number) => {
-    if (this.#cursor + num > this.buffer.length) 
-      this.buffer = Buffer.concat([this.buffer, Buffer.from(new Array(num))])
+    if (this.cursor + num > this.buffer.length) 
+      this._buffer = Buffer.concat([this.buffer, Buffer.from(new Array(num))])
   }
 
   writeUByte(val: number) {
     this.addToBuffer(1)
-    this.buffer.writeUInt8(val, this.#cursor)
-    this.#cursor++
+    this._buffer.writeUInt8(val, this.cursor)
+    this._cursor++
   }
 
   writeString(val: string) {
@@ -38,8 +39,8 @@ class MinecraftPacket {
     this.writeVarInt(len)
     this.addToBuffer(len)
 
-    this.buffer.write(val, this.#cursor, len, "utf8")
-    this.#cursor += len
+    this.buffer.write(val, this.cursor, len, "utf8")
+    this._cursor += len
   }
 
   writeUShort(val: any) {
@@ -52,18 +53,18 @@ class MinecraftPacket {
     let value = 0
 
     do {
-      var read = this.buffer.readUInt8(this.#cursor + cursor)
+      var read = this.buffer.readUInt8(this.cursor + cursor)
       value |= (read & 0x7F) << cursor * 7
       cursor++
     } while ((read & 0b10000000) === 128)
 
-    this.#cursor += cursor
+    this._cursor += cursor
     return value
   }
 
   readString() {
     const len = this.readVarInt()
-    return this.buffer.toString("utf8", this.#cursor, this.#cursor += len)
+    return this.buffer.toString("utf8", this._cursor, this._cursor += len)
   }
 
   send(socket: Socket) {
