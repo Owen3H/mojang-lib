@@ -12,18 +12,15 @@
         "removeComments": true,
         "skipDefaultLibCheck": true,
         "importHelpers": true,
-        "declaration": true,
         "types": ["node"],
         "paths": {
-            "tslib": [ "../tslib/tslib.d.ts" ]
+            "tslib": ["../tslib/tslib.d.ts"]
         }
     },
     "include": ["src"],
     "exclude": [
         "src/deprecated", 
         "node_modules", 
-        "dist",
-        "tsconfig.json",
-        "test-pkg"
+        "dist", "test-pkg"
     ]
 }
