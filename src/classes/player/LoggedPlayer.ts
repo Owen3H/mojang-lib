@@ -3,7 +3,7 @@ import LoggedPlayerTextures from './LoggedPlayerTextures.js'
 import { PlayerProperty } from './Player.js'
 
 /** 
- * @class @desc Represents a logged in player.
+ * Represents a logged in player.
  * - Has ability to manipulate their skin
  */
 class LoggedPlayer extends RegularPlayer {

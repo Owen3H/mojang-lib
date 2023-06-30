@@ -12,9 +12,14 @@ type PingParams = {
   timeout?: number
 }
 
+type ReqOptions = {
+  method?: string
+  payload?: {}
+  headers?: {}
+}
+
 class Requests {
-  //@ts-ignore
-  private static send = async (url: string, opts: any, method?: Dispatcher.HttpMethod) => {
+  private static send = async (url: string, opts: ReqOptions, method?: Dispatcher.HttpMethod) => {
     const options: any = null
 
     if (method) options.method = method
@@ -27,35 +32,41 @@ class Requests {
   }
 
   /**
-   * @static @method GET - HTTP GET method
+   * Sends an HTTP `GET` request to the inputted URL.
    *
-   * @param { String } url The url to GET
+   * @internal
+   * @param { String } url The URL to send the request to.
+   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
    */
-  static GET = (url: string, opts?: {}) => this.send(url, opts)
+  static GET = (url: string, opts?: ReqOptions) => this.send(url, opts)
 
   /**
-   * @static @method POST - HTTP POST method
+   * Sends an HTTP `POST` request to the inputted URL.
    *
-   * @param { String }  url   The url to POST
-   * @param { Object }  opts  Options of the request
+   * @internal
+   * @param { String } url The URL to send the request to.
+   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
    */
-  static POST = (url: string, opts?: {}) => this.send(url, opts, "POST")
+  static POST = (url: string, opts?: ReqOptions) => this.send(url, opts, "POST")
 
   /**
-   * @static @method DELETE - HTTP DELETE method
+   * Sends an HTTP `DELETE` request to the inputted URL.
    *
-   * @param { String }  url   The url to DELETE
-   * @param { Object }  opts  Options of the request
+   * @internal
+   * @param { String } url The URL to send the request to.
+   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
    */
-  static DELETE = (url: string, opts?: {}) => this.send(url, opts, "DELETE")
+  static DELETE = (url: string, opts?: ReqOptions) => this.send(url, opts, "DELETE")
 
   /**
-   * @static @method pingServer - Pings a Minecraft server
+   * Pings a Minecraft server
    *
+   * @internal
    * @param { String } address  The server IP address
    * @param { Number } port     The server port number
    * @param { Number } protocol The protocol to use for the ping
    * @param { Number } timeout  Duration in ms before the connection times out
+   * 
    */
   static pingServer = (pingParams: PingParams): Promise<ServerData> => {
     return new Promise((resolve, reject) => {

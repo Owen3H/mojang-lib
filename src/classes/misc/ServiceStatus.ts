@@ -1,7 +1,7 @@
 const colorToNumber = (color: string) => color === "green" ? 1 : (color === "yellow" ? 0.5 : 0)
 
 /** 
- * @class @desc Represents the status of the Minecraft services
+ * Represents the status of Minecraft services
  */
 class ServiceStatus {
   constructor(statuses: any) {

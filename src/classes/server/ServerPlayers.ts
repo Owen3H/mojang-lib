@@ -1,8 +1,5 @@
 import Player, { PlayerIdentity } from '../player/Player.js'
 
-/*
-*  @class @desc Represents the players in a server
-*/
 class ServerPlayers {
   readonly max: number
   readonly online: number

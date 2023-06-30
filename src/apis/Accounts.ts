@@ -5,6 +5,9 @@ import MinecraftProfile from '../classes/profile/MinecraftProfile.js'
 
 var LOAD_ALL_MC_ACCOUNTS = false
 
+/**
+ * Holds static functions relating to account functionality.
+ */
 class MCAPI_ACCOUNTS {
   static get LOAD_ALL_MC_ACCOUNTS() {
     return LOAD_ALL_MC_ACCOUNTS
@@ -15,18 +18,19 @@ class MCAPI_ACCOUNTS {
   }
 
   /**
-   * @public @static @method login - Logs a user in
+   * Allows a user to login to their Mojang account.
    *
-   * @param  { String } username_or_email The email or username (legacy accounts) of the user
-   * @param  { String } password The password of the user
-   * @return { Promise } Promise of an instance of MojangAccount { @see MojangAccount }
+   * @public 
+   * @param identity The email or username (legacy accounts) of the user
+   * @param password The password of the user
+   * 
    */
-  static async login(username_or_email: string, password: string) {
-    if (!username_or_email || !password)
-      return new MCAPIError(400, "(account login) The username and the password must be filled")
+  static async login(identity: string, password: string) {
+    if (!identity || !password)
+      return new MCAPIError(400, "[Account Login] - Both identity and password are required!")
 
     const payload = {
-      username: username_or_email,
+      username: identity,
       password: password,
       requestUser: true,
       agent: { 
@@ -37,11 +41,13 @@ class MCAPI_ACCOUNTS {
 
     const body = await reqs.POST("https://authserver.mojang.com/authenticate", { payload }).catch(err => {
         if (!(err instanceof MCAPIError)) return err
-        const msg = err.code == 429 
-          ? "(account login) You have reached the API request limit"
-          : "(account login) Username or password not recognized"
 
-        return new MCAPIError(err.code, msg)
+        const errPrefix = "[Account Login] - "
+        const msg = err.code == 429 
+          ? "You have reached the API request limit."
+          : "Identity and/or password not recognized."
+
+        return new MCAPIError(err.code, `${errPrefix}${msg}`)
     })
 
     if (!body) {
@@ -56,9 +62,10 @@ class MCAPI_ACCOUNTS {
 
     for (let i = 0; i < len; i++) {
       const profile = profiles[i]
-      if (!(profile instanceof MinecraftProfile)) continue
-      if (!profile.player || profile.game == "minecraft")
+      if (profile instanceof MinecraftProfile) {
+        if (!profile.player || profile.game == "minecraft")
           await profile.loadPlayer()
+      }
     }
 
     return account

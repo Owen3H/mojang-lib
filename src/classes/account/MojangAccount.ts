@@ -2,7 +2,7 @@ import MojangAccountProperties from './MojangAccountProperties.js'
 import MojangAccountProfiles from './MojangAccountProfiles.js'
 
 /**  
- * @class @desc Represents a Mojang Account
+ * @class Represents a Mojang Account
  */
 class MojangAccount {
   readonly registration: AccountRegistration

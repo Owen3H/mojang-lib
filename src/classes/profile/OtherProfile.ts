@@ -2,7 +2,7 @@ import { ProfileProperty } from '../account/MojangAccount.js'
 import GameProfile from './GameProfile.js'
 
 /**  
- * @class @desc Represents a Mojang game profile other than Minecraft
+ * Represents a Mojang game profile other than Minecraft
  */
 class OtherProfile extends GameProfile {
   readonly data: any

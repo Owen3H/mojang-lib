@@ -4,7 +4,7 @@ import OtherProfile from '../profile/OtherProfile.js'
 import { MojangAccountData } from './MojangAccount.js'
 
 /**  
- * @class @desc Represents a Mojang Account's game profiles
+ * @class Represents a Mojang Account's game profiles
  */
 class MojangAccountProfiles {
   readonly list: GameProfile[]

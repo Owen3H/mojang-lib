@@ -12,33 +12,56 @@ const formatMOTD = (motd: string) => {
   }).join("\n")
 }
 
-/** 
- * @class @desc Represents a pinged server with its general info
+/**
+ * @public
+ * 
+ * Represents a pinged server. 
+ * An instance of this class is returned after calling {@link Servers}
+ * - The `data` parameter must adhere to the {@link ServerData} type otherwise some properties may be undefined.
+ * - If unspecified, the `host` parameter will default to `localhost`.
+ * - If unspecified, the `port` parameter will default to `25565`.
  */
 class Server {
   readonly version: string
   readonly protocol: number
+
+  /**
+   * The hostname of the server, e.g. `play.example.net:3000`.
+   * @defaultValue `localhost`
+   */
   readonly host: string
+
+  /**
+   * The port used by the server.
+   * @defaultValue `25565`
+   */
   readonly port: number
+
+  /**
+   * The server icon in the form of a URL.
+   */
   readonly favicon: string
+
   readonly players: ServerPlayers
   readonly motd: { raw: string, formatted: string }
 
-  constructor(data: ServerData, host: string, port: number) {
-    if (!data) throw new Error("Error getting server, data is null!")
+  constructor(data: ServerData, host = 'localhost', port = 25565) {
+    if (!data) throw new Error("[Server Constructor] - Parameter `data` is " + data)
 
     const { favicon, players, description, version } = data
     const { name, protocol } = version
-    const motdText = description.text
+
+    this.host = host
+    this.port = port
 
     this.version = name
     this.protocol = protocol
 
-    this.host = host || 'localhost'
-    this.port = port || 25565
     this.favicon = favicon
+    
     this.players = new ServerPlayers(players)
 
+    const motdText = description?.text
     this.motd = { 
       raw: motdText, 
       formatted: formatMOTD(motdText)

@@ -4,7 +4,7 @@ type UserHistory = [{
 }]
 
 /** 
- *  @desc Represents the username history of a Minecraft account.
+ *   Represents the username history of a Minecraft account.
  *  - **NO LONGER WORKS** as Mojang deprecated username history.
  *  @see https://help.minecraft.net/hc/en-us/articles/8969841895693-Username-History-API-Removal-FAQ-
  */

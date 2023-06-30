@@ -1,7 +1,7 @@
 import { ProfileProperty } from "../account/MojangAccount.js"
 
 /** 
- * @class @desc Represents a basic Mojang game profile
+ * Represents a basic Mojang game profile
  */
 class GameProfile {
   readonly account: any

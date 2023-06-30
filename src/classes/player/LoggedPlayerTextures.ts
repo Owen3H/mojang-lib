@@ -4,20 +4,19 @@ import MCAPIError from '../../utils/MCAPIError.js'
 import RegularPlayerTextures from './RegularPlayerTextures.js'
 
 /** 
- * @class @desc Represents skin and cape of a logged in player.
- * - Extends { @link RegularPlayerTextures } to be able to manipulate skin
+ * Represents skin and cape of a logged in player.
+ * - Extends {@link RegularPlayerTextures} to be able to manipulate skin
  */
 class LoggedPlayerTextures extends RegularPlayerTextures {
   readonly associated_account: any
 
-  _authHeader: {}
-  get authHeader() { return this._authHeader }
+  #authHeader: {}
 
   constructor(data: any, associated_account: any) {
     super(data)
 
     this.associated_account = associated_account
-    this._authHeader = { 
+    this.#authHeader = { 
       Authorization: `Bearer ${associated_account._tokens.access}`
     }
   }
@@ -34,13 +33,13 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
       return null
     }
 
-    const res = await reqs.POST(url, { headers: this.authHeader })
+    const res = await reqs.POST(url, { headers: this.#authHeader })
     return res.statusCode
   }
   
   resetSkin = async (): Promise<boolean | MCAPIError> => {
     const url = ``
-    const res = await reqs.DELETE(url, { headers: this.authHeader })
+    const res = await reqs.DELETE(url, { headers: this.#authHeader })
 
     if (res instanceof MCAPIError) {
       if (res.statusCode === 429) {
@@ -72,7 +71,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
 
       reqs.POST(endpoint, { 
         payload: body,
-        headers: this.authHeader
+        headers: this.#authHeader
       }).then(() => {
           this.setAttributes(SLIM, url)
           resolve(url)

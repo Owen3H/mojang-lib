@@ -4,7 +4,7 @@ import MCAPIError from '../utils/MCAPIError.js'
 
 class MCAPI_PLAYERS {
   /**
-   * @static @method get - Get profile info of an unlogged user
+   * Get profile info of an unlogged user
    *
    * @param { String } username The user's name
    */
@@ -23,7 +23,7 @@ class MCAPI_PLAYERS {
   }
 
   /**
-   * @static @method getByUUID - Get profile info of an unlogged user by UUID.
+   * Get profile info of an unlogged user by UUID.
    *
    * @param { String } uuid The user's uuid
    */

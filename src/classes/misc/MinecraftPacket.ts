@@ -1,11 +1,13 @@
 import { Socket } from "net"
 
-/** @class
- *  @desc Minecraft ping packet builder
+/** 
+ *  @class
+ *  @internal
+ *  Minecraft ping packet builder
  *
  *  Also used the wiki.vg documentation about Handshaking
- *  @see {@link https://wiki.vg/Protocol|Minecraft communication protocol}
- *  @see {@link https://wiki.vg/Server_List_Ping|Server List Ping}
+ *  @see {@link https://wiki.vg/Protocol Minecraft Communication Protocol}
+ *  @see {@link https://wiki.vg/Server_List_Ping Server List Ping}
  */
 class MinecraftPacket {
   _buffer = Buffer.from(new Array(1))

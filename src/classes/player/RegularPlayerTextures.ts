@@ -1,7 +1,7 @@
 import { Base64 } from '../../utils/fn.js'
 
 /** 
- * @class @desc Represents a minecraft player's skin and cape
+ * Represents a minecraft player's skin and cape
  */
 class RegularPlayerTextures {
   skin_url: any

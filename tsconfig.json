@@ -21,6 +21,8 @@
     "exclude": [
         "src/deprecated", 
         "node_modules", 
-        "dist", "test-pkg"
+        "dist",
+        "test-pkg",
+        "docs"
     ]
 }

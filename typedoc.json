@@ -1,0 +1,11 @@
+{ 
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["./src"],
+    "entryPointStrategy": "expand",
+    "tsconfig": "./tsconfig.json",
+    "theme": "hierarchy",
+    "excludePrivate": true,
+    "hideGenerator": true,
+    "plugin": ["typedoc-theme-hierarchy"],
+    "out": "docs"
+}

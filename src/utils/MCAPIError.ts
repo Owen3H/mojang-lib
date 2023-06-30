@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 class MCAPIError extends Error {
   readonly code: number
   readonly date: Date

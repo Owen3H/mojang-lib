@@ -3,7 +3,7 @@ import GameProfile from './GameProfile.js'
 import LoggedPlayer from '../player/LoggedPlayer.js'
 
 /** 
- * @class @desc Represents a user's Minecraft profile
+ * Represents a user's Minecraft profile
  */
 class MinecraftProfile extends GameProfile {
   private _player: any

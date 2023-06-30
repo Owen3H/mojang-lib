@@ -3,12 +3,12 @@ import Server from '../classes/server/Server.js'
 
 class MCAPI_SERVERS {
   /**
-   * @static @attribute DEFAULT_PORT - The default port for Minecraft servers
+   * The default port for Minecraft servers
    */
   static readonly DEFAULT_PORT = 25565
 
   /**
-   * @static @method blockedServers - Get the list of SHA1 encoded blocked servers IPs
+   * Get the list of SHA1 encoded blocked servers IPs
    */
   static blockedServers = async () => {
     const serverList = await reqs.GET("https://sessionserver.mojang.com/blockedservers")
@@ -19,7 +19,7 @@ class MCAPI_SERVERS {
   }
     
   /**
-   * @static @method get - Retrieve server information.
+   * Pings and retreives info on the requested server.
    *
    * @param { String } host   - The IP address of the server. Allows ":port" postfix.
    * @param { Number } [port] - The port to use, defaults to `25565` if not passed.

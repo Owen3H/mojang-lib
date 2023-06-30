@@ -3,7 +3,7 @@ import Player, { PlayerIdentity } from './Player.js'
 import RegularPlayerTextures from './RegularPlayerTextures.js'
 
 /** 
- * @class @desc Represents a regular player's name, uuid & skin info.
+ * Extends {@link Player} with added skin and cape info.
  * - Username history has been removed by Mojang.
  */
 class RegularPlayer extends Player {

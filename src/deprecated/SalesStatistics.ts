@@ -3,7 +3,7 @@ import SalesOverview from './SalesOverview.js'
 import MCAPIError from '../utils/MCAPIError.js'
 
 /** 
- *  @desc Gather Mojang statistics on game sales.
+ *   Gather Mojang statistics on game sales.
  *  - **NO LONGER WORKS** as Mojang removed statistics endpoint.
  *  @see https://twitter.com/Mojang_Ined/status/1501541417784852484
  */

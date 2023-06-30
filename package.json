@@ -12,9 +12,10 @@
   ],
   "scripts": {
     "test": "cd test-pkg && npm run test",
-    "build": "npm run prebuild && npm run rollup",
-    "prebuild": "rimraf dist",
-    "rollup": "rollup -c"
+    "build": "npm run clean && npm run rollup && npm run typedoc",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c",
+    "typedoc": "npx typedoc --options typedoc.json"
   },
   "funding": "https://github.com/sponsors/Owen3H",
   "repository": {
@@ -38,7 +39,14 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.43.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "rimraf": "^5.0.1",
-    "rollup-plugin-esbuild": "^5.0.0"
+    "rollup-plugin-esbuild": "^5.0.0",
+    "typedoc": "^0.24.8",
+    "typedoc-theme-hierarchy": "^4.0.0",
+    "typescript": "^5.1.6"
   }
 }
