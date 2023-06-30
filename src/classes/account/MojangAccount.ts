@@ -1,5 +1,6 @@
 import MojangAccountProperties from './MojangAccountProperties.js'
 import MojangAccountProfiles from './MojangAccountProfiles.js'
+import { ProfileProperty } from '../profile/GameProfile.js'
 
 /**  
  * @class Represents a Mojang Account
@@ -42,21 +43,6 @@ class MojangAccount {
 export type UserProperty = {
   name: string
   value: string
-}
-
-export type ProfileProperty = AuthenticatedProfile & {
-  legacyProfile?: boolean
-  agent?: string
-  createdAt: string | number
-  tokenId?: string
-  suspended: boolean
-  migrated: boolean
-}
-
-export type AuthenticatedProfile = {
-  name: string
-  id: string
-  legacy?: boolean
 }
 
 export type AccountRegistration = {

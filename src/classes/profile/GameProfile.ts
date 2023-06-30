@@ -1,4 +1,17 @@
-import { ProfileProperty } from "../account/MojangAccount.js"
+export type AuthenticatedProfile = {
+  name: string
+  id: string
+  legacy?: boolean
+}
+
+export type ProfileProperty = AuthenticatedProfile & {
+  legacyProfile?: boolean
+  agent?: string
+  createdAt: string | number
+  tokenId?: string
+  suspended: boolean
+  migrated: boolean
+}
 
 /** 
  * Represents a basic Mojang game profile

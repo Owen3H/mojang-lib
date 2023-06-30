@@ -1,4 +1,4 @@
-import { ProfileProperty } from '../account/MojangAccount.js'
+import { ProfileProperty } from './GameProfile.js'
 import GameProfile from './GameProfile.js'
 
 /**  
