@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
