@@ -7,7 +7,7 @@
         "allowJs": true,
         "checkJs": true,
         "moduleResolution": "NodeNext",
-        "outDir": "dist/esm",
+        "outDir": "dist",
         "resolveJsonModule": true,
         "removeComments": true,
         "skipDefaultLibCheck": true,

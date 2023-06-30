@@ -1,5 +1,7 @@
-import esbuild from 'rollup-plugin-esbuild'
 import pkg from './package.json' assert { type: 'json' }
+
+import esbuild from 'rollup-plugin-esbuild'
+import dts from 'rollup-plugin-dts'
 
 const generatedCode = {
     arrowFunctions: true,
@@ -7,7 +9,7 @@ const generatedCode = {
     objectShorthand: true
 }
 
-export default [{
+const source = {
     input: 'src/index.ts',
     external: ['undici', 'tslib', 'net'],
     plugins: [esbuild()],
@@ -20,4 +22,12 @@ export default [{
         file: pkg.module, 
         format: 'es' 
     }]
-}]
+}
+
+const types = {
+    input: 'src/index.ts',
+    output: [{ file: 'dist/types.d.ts', format: 'es' }],
+    plugins: [dts()]
+}
+
+export default [source, types]

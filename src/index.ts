@@ -14,6 +14,7 @@ class MCAPI {
   static readonly servers  = MCAPI_SERVERS
 
   /**
+   * @readonly
    * The current package version
    */
   static get version() {

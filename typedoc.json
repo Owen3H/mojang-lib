@@ -9,5 +9,6 @@
     "plugin": ["typedoc-theme-hierarchy"],
     "out": "docs",
     "name": "mojang-lib",
-    "basePath": "./src"
+    "basePath": "./src",
+    "gitRevision": "main"
 }
