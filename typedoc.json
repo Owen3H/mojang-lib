@@ -8,5 +8,6 @@
     "hideGenerator": true,
     "plugin": ["typedoc-theme-hierarchy"],
     "out": "docs",
-    "name": "mojang-lib"
+    "name": "mojang-lib",
+    "basePath": "./src"
 }
