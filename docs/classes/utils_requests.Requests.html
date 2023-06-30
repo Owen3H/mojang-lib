@@ -21,7 +21,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Requests</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/utils/requests.ts#L15">src/utils/requests.ts:15</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/utils/requests.ts#L21">src/utils/requests.ts:21</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -52,94 +52,90 @@
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>DELETE</span><a href="#DELETE" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="tsd-signature tsd-anchor-link" id="DELETE.DELETE-1"><span class="tsd-kind-call-signature">DELETE</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">url</span>, <span class="tsd-kind-parameter">opts</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span><a href="#DELETE.DELETE-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
+<li class="tsd-description"><code class="tsd-tag ts-flagInternal">Internal</code> 
+<div class="tsd-comment tsd-typography"><p>Sends an HTTP <code>DELETE</code> request to the inputted URL.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">url</span>: <span class="tsd-signature-type">string</span></h5>
-<div class="tsd-comment tsd-typography"><p>The url to DELETE</p>
+<div class="tsd-comment tsd-typography"><p>The URL to send the request to.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-symbol">{}</span></h5>
-<div class="tsd-comment tsd-typography"><p>Options of the request</p>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-type ">ReqOptions</span></h5>
+<div class="tsd-comment tsd-typography"><p>The options that will be used in the request. (Optional)</p>
 </div>
-<div class="tsd-comment tsd-typography"></div>
-<ul class="tsd-parameters"></ul></li></ul></div>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span></h4>
-<div class="tsd-comment tsd-typography">
-<h4>Static</h4>
-<h4>Method</h4><p>DELETE - HTTP DELETE method</p>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/utils/requests.ts#L49">src/utils/requests.ts:49</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/utils/requests.ts#L59">src/utils/requests.ts:59</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="GET" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>GET</span><a href="#GET" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="tsd-signature tsd-anchor-link" id="GET.GET-1"><span class="tsd-kind-call-signature">GET</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">url</span>, <span class="tsd-kind-parameter">opts</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span><a href="#GET.GET-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
+<li class="tsd-description"><code class="tsd-tag ts-flagInternal">Internal</code> 
+<div class="tsd-comment tsd-typography"><p>Sends an HTTP <code>GET</code> request to the inputted URL.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">url</span>: <span class="tsd-signature-type">string</span></h5>
-<div class="tsd-comment tsd-typography"><p>The url to GET</p>
+<div class="tsd-comment tsd-typography"><p>The URL to send the request to.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-symbol">{}</span></h5>
-<ul class="tsd-parameters"></ul></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-type ">ReqOptions</span></h5>
+<div class="tsd-comment tsd-typography"><p>The options that will be used in the request. (Optional)</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span></h4>
-<div class="tsd-comment tsd-typography">
-<h4>Static</h4>
-<h4>Method</h4><p>GET - HTTP GET method</p>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/utils/requests.ts#L33">src/utils/requests.ts:33</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/utils/requests.ts#L41">src/utils/requests.ts:41</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="POST" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>POST</span><a href="#POST" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="tsd-signature tsd-anchor-link" id="POST.POST-1"><span class="tsd-kind-call-signature">POST</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">url</span>, <span class="tsd-kind-parameter">opts</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span><a href="#POST.POST-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
+<li class="tsd-description"><code class="tsd-tag ts-flagInternal">Internal</code> 
+<div class="tsd-comment tsd-typography"><p>Sends an HTTP <code>POST</code> request to the inputted URL.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">url</span>: <span class="tsd-signature-type">string</span></h5>
-<div class="tsd-comment tsd-typography"><p>The url to POST</p>
+<div class="tsd-comment tsd-typography"><p>The URL to send the request to.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-symbol">{}</span></h5>
-<div class="tsd-comment tsd-typography"><p>Options of the request</p>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">opts</span>: <span class="tsd-signature-type ">ReqOptions</span></h5>
+<div class="tsd-comment tsd-typography"><p>The options that will be used in the request. (Optional)</p>
 </div>
-<div class="tsd-comment tsd-typography"></div>
-<ul class="tsd-parameters"></ul></li></ul></div>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ResponseData</span><span class="tsd-signature-symbol">&gt;</span></h4>
-<div class="tsd-comment tsd-typography">
-<h4>Static</h4>
-<h4>Method</h4><p>POST - HTTP POST method</p>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/utils/requests.ts#L41">src/utils/requests.ts:41</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/utils/requests.ts#L50">src/utils/requests.ts:50</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="pingServer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>ping<wbr/>Server</span><a href="#pingServer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="tsd-signature tsd-anchor-link" id="pingServer.pingServer-1"><span class="tsd-kind-call-signature">ping<wbr/>Server</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">pingParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/classes_server_Server.ServerData.html" class="tsd-signature-type tsd-kind-type-alias">ServerData</a><span class="tsd-signature-symbol">&gt;</span><a href="#pingServer.pingServer-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
+<li class="tsd-description"><code class="tsd-tag ts-flagInternal">Internal</code> 
+<div class="tsd-comment tsd-typography"><p>Pings a Minecraft server</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">pingParams</span>: <span class="tsd-signature-type ">PingParams</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/classes_server_Server.ServerData.html" class="tsd-signature-type tsd-kind-type-alias">ServerData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-<div class="tsd-comment tsd-typography">
-<h4>Static</h4>
-<h4>Method</h4><p>pingServer - Pings a Minecraft server</p>
-</div><aside class="tsd-sources">
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/utils/requests.ts#L59">src/utils/requests.ts:59</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/utils/requests.ts#L71">src/utils/requests.ts:71</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">

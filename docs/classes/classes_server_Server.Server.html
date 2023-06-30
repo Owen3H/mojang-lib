@@ -16,12 +16,22 @@
 <li><a href="../modules/classes_server_Server.html">classes/server/Server</a></li>
 <li><a href="classes_server_Server.Server.html">Server</a></li></ul>
 <h1>Class Server</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Represents a pinged server. 
+An instance of this class is returned after calling Servers</p>
+<ul>
+<li>The <code>data</code> parameter must adhere to the <a href="../types/classes_server_Server.ServerData.html" class="tsd-kind-type-alias">ServerData</a> type otherwise some properties may be undefined.</li>
+<li>If unspecified, the <code>host</code> parameter will default to <code>localhost</code>.</li>
+<li>If unspecified, the <code>port</code> parameter will default to <code>25565</code>.</li>
+</ul>
+</div>
+<div class="tsd-comment tsd-typography"></div></section>
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
 <li><span class="target">Server</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L15">src/classes/server/Server.ts:15</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L24">src/classes/server/Server.ts:24</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -59,19 +69,27 @@
 <h5><span class="tsd-kind-parameter">port</span>: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 25565</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="classes_server_Server.Server.html" class="tsd-signature-type tsd-kind-class">Server</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L24">src/classes/server/Server.ts:24</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L48">src/classes/server/Server.ts:48</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member"><a id="favicon" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>favicon</span><a href="#favicon" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">favicon</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
+<div class="tsd-signature"><span class="tsd-kind-property">favicon</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+<div class="tsd-comment tsd-typography"><p>The server icon in the form of a URL.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L20">src/classes/server/Server.ts:20</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L43">src/classes/server/Server.ts:43</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="host" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>host</span><a href="#host" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">host</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
+<div class="tsd-signature"><span class="tsd-kind-property">host</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+<div class="tsd-comment tsd-typography"><p>The hostname of the server, e.g. <code>play.example.net:3000</code>.</p>
+</div>
+<div class="tsd-comment tsd-typography">
+<h4>Default Value</h4><p><code>localhost</code></p>
+</div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L18">src/classes/server/Server.ts:18</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L32">src/classes/server/Server.ts:32</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="motd" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>motd</span><a href="#motd" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">motd</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">formatted</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">raw</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -83,27 +101,32 @@
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-property">raw</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L22">src/classes/server/Server.ts:22</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L46">src/classes/server/Server.ts:46</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="players" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>players</span><a href="#players" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">players</span><span class="tsd-signature-symbol">:</span> <a href="classes_server_ServerPlayers.ServerPlayers.html" class="tsd-signature-type tsd-kind-class">ServerPlayers</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L21">src/classes/server/Server.ts:21</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L45">src/classes/server/Server.ts:45</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="port" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>port</span><a href="#port" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">port</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
+<div class="tsd-signature"><span class="tsd-kind-property">port</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-comment tsd-typography"><p>The port used by the server.</p>
+</div>
+<div class="tsd-comment tsd-typography">
+<h4>Default Value</h4><p><code>25565</code></p>
+</div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L19">src/classes/server/Server.ts:19</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L38">src/classes/server/Server.ts:38</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="protocol" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>protocol</span><a href="#protocol" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">protocol</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L17">src/classes/server/Server.ts:17</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L26">src/classes/server/Server.ts:26</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="version" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>version</span><a href="#version" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">version</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/86ed6fa/src/classes/server/Server.ts#L16">src/classes/server/Server.ts:16</a></li></ul></aside></section></section></div>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/256130a/src/classes/server/Server.ts#L25">src/classes/server/Server.ts:25</a></li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
