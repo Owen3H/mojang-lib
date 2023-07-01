@@ -70,8 +70,8 @@ class Server {
     this.#version = name
     this.#protocol = protocol
     this.#icon = favicon
-    this.players = new ServerPlayers(players)
-    this.motd = { 
+    this.#players = new ServerPlayers(players)
+    this.#motd = { 
       raw: motdText, 
       formatted: formatMOTD(motdText)
     }
