@@ -59,8 +59,13 @@ class Requests {
   static DELETE = (url: string, opts?: ReqOptions) => this.send(url, opts, "DELETE")
 
   /**
-   * Pings a Minecraft server asynchronously.
-   * Raw object is returned and can be passed to ```new Server(pingData, )
+   * Pings a Minecraft server asynchronously and returns a raw object with server data.
+   * 
+   * Used internally to create a new Server instance.
+   * ```
+   * const server = new Server(data, host, port)
+   * console.log(server.players)
+   * ```
    *
    * @internal
    * @param address  The server IP address

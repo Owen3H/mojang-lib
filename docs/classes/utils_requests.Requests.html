@@ -124,14 +124,11 @@
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>send<wbr/>Server<wbr/>Ping</span><a href="#sendServerPing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="tsd-signature tsd-anchor-link" id="sendServerPing.sendServerPing-1"><span class="tsd-kind-call-signature">send<wbr/>Server<wbr/>Ping</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">pingParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/classes_server_Server.ServerData.html" class="tsd-signature-type tsd-kind-type-alias">ServerData</a><span class="tsd-signature-symbol">&gt;</span><a href="#sendServerPing.sendServerPing-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Pings a Minecraft server asynchronously.
-Raw object is returned and can be passed to ```new Server(pingData, )</p>
-<p>@internal
-@param address  The server IP address
-@param port     The server port number
-@param protocol The protocol to use for the ping
-@param timeout  Duration in ms before the connection times out</p>
+<li class="tsd-description"><code class="tsd-tag ts-flagInternal">Internal</code> 
+<div class="tsd-comment tsd-typography"><p>Pings a Minecraft server asynchronously and returns a raw object with server data.</p>
+<p>Used internally to create a new Server instance.</p>
+<pre><code><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">server</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Server</span><span class="hl-1">(</span><span class="hl-4">data</span><span class="hl-1">, </span><span class="hl-4">host</span><span class="hl-1">, </span><span class="hl-4">port</span><span class="hl-1">)</span><br/><span class="hl-4">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-4">server</span><span class="hl-1">.</span><span class="hl-4">players</span><span class="hl-1">)</span>
+</code><button>Copy</button></pre>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,7 +138,7 @@ Raw object is returned and can be passed to ```new Server(pingData, )</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/classes_server_Server.ServerData.html" class="tsd-signature-type tsd-kind-type-alias">ServerData</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/utils/requests.ts#L71">utils/requests.ts:71</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/utils/requests.ts#L76">utils/requests.ts:76</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -276,7 +273,7 @@ Raw object is returned and can be passed to ```new Server(pingData, )</p>
 <li><a class="category__link js-category-link" href="../modules/classes_server_Server.html#default" data-id="/modules/classes_server_Server.html#default"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8388608"></use></svg>default</a></li>
 <li><a class="category__link js-category-link" href="classes_server_Server.Server.html" data-id="/classes/classes_server_Server.Server.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg>Server</a></li>
 <li><a class="category__link js-category-link" href="../types/classes_server_Server.ServerData.html" data-id="/types/classes_server_Server.ServerData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg>ServerData</a></li>
-<li><a class="category__link js-category-link" href="../types/classes_server_Server.ServerMOTD.html" data-id="/types/classes_server_Server.ServerMOTD.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg>ServerMOTD</a></li></ul></li>
+<li><a class="category__link js-category-link" href="../types/classes_server_Server.ServerMotd.html" data-id="/types/classes_server_Server.ServerMotd.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg>ServerMotd</a></li></ul></li>
 <li><a class="category__link js-category-link category__link--ts" href="../modules/classes_server_ServerPlayers.html" data-id="/modules/classes_server_ServerPlayers.html">ServerPlayers.ts</a>
 <ul>
 <li><a class="category__link js-category-link" href="../modules/classes_server_ServerPlayers.html#default" data-id="/modules/classes_server_ServerPlayers.html#default"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8388608"></use></svg>default</a></li>
