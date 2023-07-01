@@ -10,7 +10,7 @@
         "new": "https://api.minecraftservices.com/minecraft/profile",
         "old": "https://api.mojang.com/user/profiles"
     },
-    "skin": {
+    "skins": {
         "list": "https://api.minecraftservices.com/minecraft/profile/skins",
         "active": "https://api.minecraftservices.com/minecraft/profile/skins/active"
     },

@@ -1,12 +1,15 @@
 import { Base64 } from '../../utils/fn.js'
 
 /** 
- * Represents a minecraft player's skin and cape
+ * Represents a Minecraft player's skin and cape.
+ * 
+ * Holds readonly info. Properties of this class are not directly writable.
+ * To manipulate a player skin, use {@link LoggedPlayerTextures} instead.
  */
 class RegularPlayerTextures {
-  skin_url: any
-  cape_url: any
-  slim: boolean
+  protected skin_url: any
+  protected cape_url: any
+  protected slim: boolean
 
   readonly uploaded_time: number
 
@@ -20,6 +23,12 @@ class RegularPlayerTextures {
     this.cape_url = capeTex?.url
     this.slim = skinTex?.metadata?.model === "slim"
     this.uploaded_time = timestamp
+  }
+
+  getAttributes = () => ({ skinURL: this.skin_url, slim: this.slim })
+  setAttributes = (slim: boolean, skinUrl: string) => {
+    this.slim = slim
+    this.skin_url = skinUrl
   }
 }
 

@@ -10,7 +10,7 @@ class RegularPlayer extends Player {
   readonly legacy: boolean
   readonly demo: boolean
 
-  textures: RegularPlayerTextures
+  protected textures: RegularPlayerTextures
 
   constructor(playerData: PlayerIdentity, logged = false) {
     super(playerData)

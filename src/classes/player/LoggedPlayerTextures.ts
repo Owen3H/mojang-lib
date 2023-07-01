@@ -2,54 +2,43 @@ import reqs from '../../utils/requests.js'
 import MCAPIError from '../../utils/MCAPIError.js'
 
 import RegularPlayerTextures from './RegularPlayerTextures.js'
+import * as endpoints from '../../endpoints.json'
 
 /** 
  * Represents skin and cape of a logged in player.
  * - Extends {@link RegularPlayerTextures} to be able to manipulate skin
  */
 class LoggedPlayerTextures extends RegularPlayerTextures {
-  readonly associated_account: any
+  readonly associatedAccount: any
 
   #authHeader: {}
 
-  constructor(data: any, associated_account: any) {
+  constructor(data: any, associatedAcc: any) {
     super(data)
 
-    this.associated_account = associated_account
+    this.associatedAccount = associatedAcc
     this.#authHeader = { 
-      Authorization: `Bearer ${associated_account._tokens.access}`
+      Authorization: `Bearer ${associatedAcc.tokens.access}`
     }
   }
 
-  getAttributes = () => ({ skinURL: this.skin_url, slim: this.slim })
-  setAttributes = (slim: boolean, skinUrl: string) => {
-    this.slim = slim
-    this.skin_url = skinUrl
-  }
-
-  uploadSkin = async (url: string, slim = false) => {
-    if (!url) {
-      console.error(new MCAPIError(400, "You must provide a url"))
-      return null
-    }
-
-    const res = await reqs.POST(url, { headers: this.#authHeader })
-    return res.statusCode
-  }
-  
-  resetSkin = async (): Promise<boolean | MCAPIError> => {
-    const url = ``
-    const res = await reqs.DELETE(url, { headers: this.#authHeader })
+  /**
+   * Removes the current skin and sets it to default (Steve).
+   * 
+   * @public
+   */
+  resetSkin = async () => {
+    const res = await reqs.DELETE(endpoints.skins.active, { headers: this.#authHeader })
 
     if (res instanceof MCAPIError) {
       if (res.statusCode === 429) {
-        console.error(new MCAPIError(429, "(skin reset) You have reached the API request limit"))
+        console.error(new MCAPIError(429, "[Skin Reset] - You have reached the API request limit"))
         return false
       }
     }
 
     if (res.statusCode !== 204) {
-      console.error(new MCAPIError(res.statusCode, '(skin reset) An error occurred sending request.'))
+      console.error(new MCAPIError(res.statusCode, '[Skin Reset] - An error occurred sending request.'))
       return false
     }
 
@@ -57,41 +46,79 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
     return true
   }
 
-  useSkinFromURL(url: string, slim: boolean) {
-    return new Promise((resolve, reject) => {
-      if (!url) return reject(new MCAPIError(400, "You must provide a url"))
+  /**
+   * Upload a skin to Mojang servers.
+   * 
+   * **NOTE** - This will also overwrite the currently active skin!
+   * 
+   * @param file The PNG file that will be uploaded.
+   * @param slim Whether or not the skin should be slim or classic.
+   * 
+   * @returns
+   * A {@link Boolean} indicatating if the upload was successful,
+   * `false` is also returned if the file input is not a valid PNG.
+   */
+  uploadSkin = async (file: string | File | Buffer, slim = false) => {
+    if (!file) {
+      console.error(new MCAPIError(400, `A valid PNG file must be provided! '${file}' was passed.`))
+      return false
+    }
 
-      let SLIM = this.slim
-      if (slim !== undefined) {
-        SLIM = slim ? true : false
+    //#region Handle MIME type validation
+    
+
+    //#endregion
+
+    const res = await reqs.POST(endpoints.skins.list, { payload: file, headers: this.#authHeader })
+    if (!res) {
+      console.error()
+      return false
+    }
+
+    return true
+  }
+
+  /**
+   * 
+   * @param url The URL of the new skin, e.g. http://assets.mojang.com/SkinTemplates/steve.png
+   * @param slim Whether or not the skin should be slim or classic.
+   * 
+   * @beta
+   */
+  useSkinFromURL = async (url: string, slim = false) => {
+    if (!url) {
+      console.error(new MCAPIError(400, `Valid URL must be provided! '${url}' was passed.`))
+      return false
+    }
+
+    const _slim = slim || (this.slim ?? false)
+    const body = `variant="${(_slim ? "slim" : "classic")}"&url=${url}`
+
+    const res = await reqs.POST(endpoints.skins.list, { payload: body, headers: this.#authHeader }).then(() => {
+        this.setAttributes(_slim, url)
+        return true
+    }).catch((err: Error) => {
+      if (!(err instanceof MCAPIError)) {
+        console.error(err)
+        return false
       }
-
-      const endpoint = ``
-      const body = `model="${(SLIM ? "slim" : "")}"&url=${url}`
-
-      reqs.POST(endpoint, { 
-        payload: body,
-        headers: this.#authHeader
-      }).then(() => {
-          this.setAttributes(SLIM, url)
-          resolve(url)
-      }).catch((err: Error) => {
-        if (!(err instanceof MCAPIError))
-          return reject(err)
-          
-        // No content, as expected
-        if (err.code === 204) {
-          this.setAttributes(SLIM, url)
-          return resolve(url)
-        }
         
-        const msg = err.code === 429 
-            ? "(skin from url) You have reached the API request limit"
-            : "(skin from url) The image couldn't be retrieved from the url"
-            
-        return reject(new MCAPIError(err.code, msg))
-      })
+      // No content, as expected
+      if (err.code === 204) {
+        this.setAttributes(_slim, url)
+        return true
+      }
+      
+      const errPrefix = '[Skin from URL] - '
+      const msg = err.code === 429 
+          ? `You have reached the API request limit`
+          : `The image couldn't be retrieved from the url`
+          
+      console.error(new MCAPIError(err.code, `${errPrefix}${msg}`))
+      return false
     })
+
+    return res
   }
 }
 

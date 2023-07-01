@@ -6,8 +6,12 @@ import { ProfileProperty } from '../profile/GameProfile.js'
  * @class Represents a Mojang Account
  */
 class MojangAccount {
+  /**
+   * @internal
+   */
+  readonly tokens: { access: string; client: string  }
+
   readonly registration: AccountRegistration
-  readonly _tokens: { access: string; client: string  }
   readonly account_id: string
   readonly username: string
   readonly email: string
@@ -16,7 +20,7 @@ class MojangAccount {
 
   constructor(data: MojangAccountData) {
     // Used by MCAPI
-    this._tokens = {
+    this.tokens = {
       access: data.accessToken,
       client: data.clientToken
     }
@@ -31,11 +35,7 @@ class MojangAccount {
       date: new Date(data.user.registeredAt)
     }
 
-    //this.last_password_change = new Date(data.user.passwordChangedAt)
-    //this.birthday = new Date(data.user.dateOfBirth)
     this.properties = new MojangAccountProperties(data)
-
-    // Available profiles
     this.profiles = new MojangAccountProfiles(data, this)
   }
 } 

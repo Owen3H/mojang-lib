@@ -6,7 +6,7 @@ class MCAPI_PLAYERS {
   /**
    * Get profile info of an unlogged user
    *
-   * @param { String } username The user's name
+   * @param username The user's name
    */
   static get(username: string, raw = false): Promise<RegularPlayer> {
     return new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ class MCAPI_PLAYERS {
   /**
    * Get profile info of an unlogged user by UUID.
    *
-   * @param { String } uuid The user's uuid
+   * @param uuid The user's uuid
    */
   static getByUUID = async (uuid: string, raw?: boolean): Promise<RegularPlayer> => {
     try {

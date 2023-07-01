@@ -6,9 +6,9 @@ import LoggedPlayer from '../player/LoggedPlayer.js'
  * Represents a user's Minecraft profile
  */
 class MinecraftProfile extends GameProfile {
-  private _player: any
+  #player: any
   get player() {
-    return this._player
+    return this.#player
   }
 
   readonly legacy: boolean
@@ -27,7 +27,15 @@ class MinecraftProfile extends GameProfile {
 
   loadPlayer = async () => {
     const data = await MCAPI_PLAYERS.get(this.username, true)
-    this._player = new LoggedPlayer(data, this.account)
+    this.#player = new LoggedPlayer(data, this.account)
+  }
+
+  changeName = async () => {
+
+  }
+  
+  isNameAvailable = async () => {
+
   }
 }
 

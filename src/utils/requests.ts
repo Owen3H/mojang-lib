@@ -35,8 +35,8 @@ class Requests {
    * Sends an HTTP `GET` request to the inputted URL.
    *
    * @internal
-   * @param { String } url The URL to send the request to.
-   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
+   * @param url The URL to send the request to.
+   * @param opts The options that will be used in the request. (Optional)
    */
   static GET = (url: string, opts?: ReqOptions) => this.send(url, opts)
 
@@ -44,8 +44,8 @@ class Requests {
    * Sends an HTTP `POST` request to the inputted URL.
    *
    * @internal
-   * @param { String } url The URL to send the request to.
-   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
+   * @param url The URL to send the request to.
+   * @param opts The options that will be used in the request. (Optional)
    */
   static POST = (url: string, opts?: ReqOptions) => this.send(url, opts, "POST")
 
@@ -53,22 +53,22 @@ class Requests {
    * Sends an HTTP `DELETE` request to the inputted URL.
    *
    * @internal
-   * @param { String } url The URL to send the request to.
-   * @param { ReqOptions } opts The options that will be used in the request. (Optional)
+   * @param url The URL to send the request to.
+   * @param opts The options that will be used in the request. (Optional)
    */
   static DELETE = (url: string, opts?: ReqOptions) => this.send(url, opts, "DELETE")
 
   /**
-   * Pings a Minecraft server
+   * Pings a Minecraft server asynchronously.
+   * Raw object is returned and can be passed to ```new Server(pingData, )
    *
    * @internal
-   * @param { String } address  The server IP address
-   * @param { Number } port     The server port number
-   * @param { Number } protocol The protocol to use for the ping
-   * @param { Number } timeout  Duration in ms before the connection times out
-   * 
+   * @param address  The server IP address
+   * @param port     The server port number
+   * @param protocol The protocol to use for the ping
+   * @param timeout  Duration in ms before the connection times out
    */
-  static pingServer = (pingParams: PingParams): Promise<ServerData> => {
+  static sendServerPing = (pingParams: PingParams): Promise<ServerData> => {
     return new Promise((resolve, reject) => {
       const { address, port, protocol, timeout } = pingParams,
             totalReadingDataBuffer = new MinecraftPacket(),

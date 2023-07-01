@@ -1,4 +1,5 @@
 import ServerPlayers, { ServerPlayerData } from './ServerPlayers.js'
+import { default as servers } from '../../apis/Servers'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 
@@ -22,9 +23,6 @@ const formatMOTD = (motd: string) => {
  * - If unspecified, the `port` parameter will default to `25565`.
  */
 class Server {
-  readonly version: string
-  readonly protocol: number
-
   /**
    * The hostname of the server, e.g. `play.example.net:3000`.
    * @defaultValue `localhost`
@@ -37,36 +35,58 @@ class Server {
    */
   readonly port: number
 
-  /**
-   * The server icon in the form of a URL.
-   */
-  readonly favicon: string
+  #icon: string
+  #version: string
+  #protocol: number
+  #players: ServerPlayers
+  #motd: { 
+    raw: string, 
+    formatted: string 
+  }
 
-  readonly players: ServerPlayers
-  readonly motd: { raw: string, formatted: string }
+  /**
+   * The server icon in the form of a {@link Blob}.
+   */
+  get icon() { return this.#icon }
+
+  get version() { return this.#version }
+
+  get protocol() { return this.#protocol }
+
+  get players() { return this.#players }
+
+  get motd() { return this.#motd }
 
   constructor(data: ServerData, host = 'localhost', port = 25565) {
     if (!data) throw new Error("[Server Constructor] - Parameter `data` is " + data)
+    this.#init(data)
+  }
 
+  #init(data: ServerData) {
     const { favicon, players, description, version } = data
     const { name, protocol } = version
-
-    this.host = host
-    this.port = port
-
-    this.version = name
-    this.protocol = protocol
-
-    this.favicon = favicon
-    
-    this.players = new ServerPlayers(players)
-
     const motdText = description?.text
+
+    this.#version = name
+    this.#protocol = protocol
+    this.#icon = favicon
+    this.players = new ServerPlayers(players)
     this.motd = { 
       raw: motdText, 
       formatted: formatMOTD(motdText)
     }
   }
+
+  refresh = async () => {
+    const data = await servers.ping(this.host, this.port)
+    this.#init(data)
+    // Call init and pass data
+  }
+}
+
+export type ServerMOTD = {
+  raw: string
+  formatted: string
 }
 
 export type ServerData = {

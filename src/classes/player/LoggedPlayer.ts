@@ -4,7 +4,7 @@ import { PlayerProperty } from './Player.js'
 
 /** 
  * Represents a logged in player.
- * - Has ability to manipulate their skin
+ * - Has ability to manipulate their skin via the {@link textures} property.
  */
 class LoggedPlayer extends RegularPlayer {
   readonly associated_account: any
