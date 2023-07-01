@@ -39,11 +39,8 @@ class Server {
   #version: string
   #protocol: number
   #players: ServerPlayers
-  #motd: { 
-    raw: string, 
-    formatted: string 
-  }
-
+  #motd: ServerMotd
+  
   /**
    * The server icon in the form of a {@link Blob}.
    */
@@ -59,6 +56,10 @@ class Server {
 
   constructor(data: ServerData, host = 'localhost', port = 25565) {
     if (!data) throw new Error("[Server Constructor] - Parameter `data` is " + data)
+
+    this.host = host
+    this.port = port
+
     this.#init(data)
   }
 
@@ -80,11 +81,10 @@ class Server {
   refresh = async () => {
     const data = await servers.ping(this.host, this.port)
     this.#init(data)
-    // Call init and pass data
   }
 }
 
-export type ServerMOTD = {
+export type ServerMotd = {
   raw: string
   formatted: string
 }
