@@ -2,6 +2,7 @@ import pkg from './package.json' assert { type: 'json' }
 
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+import json from '@rollup/plugin-json'
 
 const generatedCode = {
     arrowFunctions: true,
@@ -12,7 +13,7 @@ const generatedCode = {
 const source = {
     input: 'src/index.ts',
     external: ['undici', 'tslib', 'net'],
-    plugins: [esbuild()],
+    plugins: [esbuild(), json()],
     output: [{ 
         generatedCode, 
         file: pkg.main, 
