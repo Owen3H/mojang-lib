@@ -1,3 +1,4 @@
+//@ts-ignore
 import { request, Dispatcher } from 'undici-shim'
 import { Socket } from 'net'
 
