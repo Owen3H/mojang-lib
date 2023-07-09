@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/types.d.ts",
+  "type": "module",
   "files": [
     "dist",
     "README.md",
@@ -13,9 +14,9 @@
   ],
   "scripts": {
     "test": "cd test-pkg && npm run test",
-    "build": "npm run clean && npm run rollup && npm run typedoc",
     "clean": "rimraf dist",
-    "rollup": "rollup -c",
+    "rollup": "npm run clean && rollup -c",
+    "build": "npm run rollup && npm run typedoc",
     "typedoc": "npx typedoc --options typedoc.json"
   },
   "funding": "https://github.com/sponsors/Owen3H",
@@ -36,7 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "tslib": "^2.5.3",
-    "undici": "latest"
+    "undici-shim": "^1.4.2"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",

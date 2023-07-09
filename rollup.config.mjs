@@ -12,16 +12,18 @@ const generatedCode = {
 
 const source = {
     input: 'src/index.ts',
-    external: ['undici', 'tslib', 'net'],
+    external: ['undici-shim', 'tslib', 'net'],
     plugins: [esbuild(), json()],
     output: [{ 
         generatedCode, 
         file: pkg.main, 
-        format: 'cjs' 
+        format: 'umd',
+        name: 'mojanglib'
     }, {
         generatedCode,
         file: pkg.module, 
-        format: 'es' 
+        format: 'es',
+        sourcemap: true
     }]
 }
 

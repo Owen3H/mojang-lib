@@ -1,5 +1,5 @@
 /**  
- * @class Represents a Mojang account's general properties
+ * Represents a Mojang account's general properties
  */
 class MojangAccountProperties {
   [name: string]: boolean | string

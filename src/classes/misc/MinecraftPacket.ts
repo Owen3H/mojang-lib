@@ -1,7 +1,6 @@
 import { Socket } from "net"
 
 /** 
- *  @class
  *  @internal
  *  Minecraft ping packet builder
  *

@@ -14,15 +14,19 @@ class MCAPI_MISC {
   /**
    * @static @method fetchStatus - Get the status of the Mojang's services
    */
-  static fetchStatus = () => new Promise((resolve, reject) =>
-    reqs.GET("https://status.mojang.com/check")
-      .then(body => resolve(new ServiceStatus(body)))
-      .catch((err) => {
-        if (err instanceof MCAPIError && err.code === 429) 
-          reject(new MCAPIError(429, "(status fetcher) You have reached the API request limit"))
-        else reject(err)
-      })
-  )
+  static fetchStatus = async () => { 
+    try {
+      const status = await reqs.GET("https://status.mojang.com/check")
+      return new ServiceStatus(status)
+    } catch (e) {
+      let err = e
+      if (e instanceof MCAPIError && e.code === 429) 
+        err = new MCAPIError(429, "[Status Fetcher] - You have reached the API request limit!")
+
+      console.error(err)
+      return null
+    }
+  }
 }
 
 export {

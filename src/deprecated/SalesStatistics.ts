@@ -12,8 +12,8 @@ class MCAPI_MISC {
   /**
   * @static @method salesStatsByName - Get sales for the given sales type.
   *
-  * @param  { String } type The sales type name for the Mojang API
-  * @param  { String } name The name to output as
+  * @param type The sales type name for the Mojang API
+  * @param name The name to output as
   */
   static salesStatsByName = async (type: string, name: string) => {
     const res = await reqs.POST("https://api.mojang.com/orders/statistics", { 

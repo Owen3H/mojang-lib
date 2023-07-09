@@ -3,7 +3,7 @@ import MojangAccountProfiles from './MojangAccountProfiles.js'
 import { ProfileProperty } from '../profile/GameProfile.js'
 
 /**  
- * @class Represents a Mojang Account
+ * Represents a Mojang Account
  */
 class MojangAccount {
   /**

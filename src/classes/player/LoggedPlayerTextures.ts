@@ -2,7 +2,7 @@ import reqs from '../../utils/requests.js'
 import MCAPIError from '../../utils/MCAPIError.js'
 
 import RegularPlayerTextures from './RegularPlayerTextures.js'
-import * as endpoints from '../../endpoints.json'
+import { skins } from '../../endpoints.json'
 
 /** 
  * Represents skin and cape of a logged in player.
@@ -23,15 +23,14 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
   }
 
   /**
-   * Removes the current skin and sets it to default (Steve).
-   * 
    * @public
+   * Removes the current skin and sets it to default (Steve).
    */
   resetSkin = async () => {
-    const res = await reqs.DELETE(endpoints.skins.active, { headers: this.#authHeader })
+    const res = await reqs.DELETE(skins.active, { headers: this.#authHeader })
 
     if (res instanceof MCAPIError) {
-      if (res.statusCode === 429) {
+      if (res.code === 429) {
         console.error(new MCAPIError(429, "[Skin Reset] - You have reached the API request limit"))
         return false
       }
@@ -69,9 +68,9 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
 
     //#endregion
 
-    const res = await reqs.POST(endpoints.skins.list, { payload: file, headers: this.#authHeader })
+    const res = await reqs.POST(skins.list, { payload: file, headers: this.#authHeader })
     if (!res) {
-      console.error()
+      console.error(new MCAPIError(404, `[Upload Skin] - Could not send the request, received ${res}`))
       return false
     }
 
@@ -94,7 +93,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
     const _slim = slim || (this.slim ?? false)
     const body = `variant="${(_slim ? "slim" : "classic")}"&url=${url}`
 
-    const res = await reqs.POST(endpoints.skins.list, { payload: body, headers: this.#authHeader }).then(() => {
+    const res = await reqs.POST(skins.list, { payload: body, headers: this.#authHeader }).then(() => {
         this.setAttributes(_slim, url)
         return true
     }).catch((err: Error) => {

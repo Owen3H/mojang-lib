@@ -1,5 +1,5 @@
 import ServerPlayers, { ServerPlayerData } from './ServerPlayers.js'
-import { default as servers } from '../../apis/Servers'
+import { default as servers } from '../../apis/Servers.js'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 
@@ -26,56 +26,79 @@ class Server {
   /**
    * The hostname of the server, e.g. `play.example.net:3000`.
    * @defaultValue `localhost`
+   * @readonly
    */
-  readonly host: string
+  host: string
 
   /**
    * The port used by the server.
    * @defaultValue `25565`
+   * @readonly
    */
-  readonly port: number
+  port: number
 
-  #icon: string
-  #version: string
-  #protocol: number
-  #players: ServerPlayers
-  #motd: ServerMotd
-  
   /**
    * The server icon in the form of a {@link Blob}.
+   * @readonly
    */
-  get icon() { return this.#icon }
+  icon: string
 
-  get version() { return this.#version }
+  /**
+   * The version (or range) this server supports.
+   * @readonly
+   */
+  version: string
 
-  get protocol() { return this.#protocol }
+  /**
+   * The protocol version number of this server, used to check for incompatibilites
+   * between the player's client and the server they are trying to connect to.
+   * 
+   * @see {@link https://wiki.vg/Protocol_version_numbers List of protocol/version mappings.}
+   * @readonly
+   */
+  protocol: number
 
-  get players() { return this.#players }
+  /**
+   * The instance of {@link ServerPlayers}
+   * @readonly
+   */
+  players: ServerPlayers
 
-  get motd() { return this.#motd }
-
+  /**
+   * The 'Message of the Day' configured by this server, a.k.a the description
+   * shown below the server name when connecting via the server list.
+   * @readonly
+   */
+  motd: ServerMotd
+  
   constructor(data: ServerData, host = 'localhost', port = 25565) {
-    if (!data) throw new Error("[Server Constructor] - Parameter `data` is " + data)
+    if (!data) throw new Error(`[Server Constructor] - Parameter 'data' is ${data}`)
 
-    this.host = host
-    this.port = port
+    this.#defineProp('host', host)
+    this.#defineProp('port', port)
 
     this.#init(data)
   }
+
+  #defineProp = (k: string, v: any) => Object.defineProperty(this, k, { 
+    value: v, 
+    writable: false, 
+    configurable: false
+  })
 
   #init(data: ServerData) {
     const { favicon, players, description, version } = data
     const { name, protocol } = version
     const motdText = description?.text
 
-    this.#version = name
-    this.#protocol = protocol
-    this.#icon = favicon
-    this.#players = new ServerPlayers(players)
-    this.#motd = { 
+    this.#defineProp('version', name)
+    this.#defineProp('protocol', protocol)
+    this.#defineProp('icon', favicon)
+    this.#defineProp('players', new ServerPlayers(players))
+    this.#defineProp('motd', { 
       raw: motdText, 
       formatted: formatMOTD(motdText)
-    }
+    })
   }
 
   refresh = async () => {

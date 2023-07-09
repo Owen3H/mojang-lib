@@ -1,4 +1,4 @@
-import { request, Dispatcher } from 'undici'
+import { request, Dispatcher } from 'undici-shim'
 import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError.js'
