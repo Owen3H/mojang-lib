@@ -2,7 +2,17 @@
  * Represents a Mojang account's general properties
  */
 class MojangAccountProperties {
-  [name: string]: boolean | string
+  readonly suspended: boolean
+  readonly blocked: boolean
+  readonly secured: boolean
+
+  readonly legacy: boolean
+  readonly migrated: boolean
+  readonly migratedUser: boolean
+
+  readonly hashed: boolean
+  readonly emailVerified: boolean
+  readonly parentVerified: boolean
 
   constructor(data: any) {
     const { user } = data
@@ -10,12 +20,14 @@ class MojangAccountProperties {
     this.suspended = user.suspended
     this.blocked = user.blocked
     this.secured = user.secured
-    this.migrated = user.migrated
-    this.email_verified = user.emailVerified
+
     this.legacy = user.legacyUser
-    this.parent_verified = user.verifiedByParent
+    this.migrated = user.migrated
+    this.migratedUser = user.fromMigratedUser
+
     this.hashed = user.hashed
-    this.from_migrated_user = user.fromMigratedUser
+    this.emailVerified = user.emailVerified
+    this.parentVerified = user.verifiedByParent
   }
 }
 

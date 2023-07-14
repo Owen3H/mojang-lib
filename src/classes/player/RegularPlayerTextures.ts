@@ -11,7 +11,7 @@ class RegularPlayerTextures {
   protected cape_url: any
   protected slim: boolean
 
-  readonly uploaded_time: number
+  protected uploadedAt: number
 
   constructor(textureData: any) {
     const { textures, timestamp } = JSON.parse(Base64.decode(textureData))
@@ -22,7 +22,7 @@ class RegularPlayerTextures {
     this.skin_url = skinTex?.url
     this.cape_url = capeTex?.url
     this.slim = skinTex?.metadata?.model === "slim"
-    this.uploaded_time = timestamp
+    this.uploadedAt = timestamp
   }
 
   getAttributes = () => ({ skinURL: this.skin_url, slim: this.slim })

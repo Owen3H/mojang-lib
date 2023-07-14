@@ -3,18 +3,18 @@ import MCAPIError from '../utils/MCAPIError.js'
 import MojangAccount from '../classes/account/MojangAccount.js'
 import MinecraftProfile from '../classes/profile/MinecraftProfile.js'
 
-var LOAD_ALL_MC_ACCOUNTS = false
-
 /**
  * Holds static functions relating to account functionality.
  */
 class MCAPI_ACCOUNTS {
-  static get LOAD_ALL_MC_ACCOUNTS() {
-    return LOAD_ALL_MC_ACCOUNTS
+  loadAll = false
+
+  static get loadAll(): boolean {
+    return this.loadAll
   }
 
-  static set LOAD_ALL_MC_ACCOUNTS(value) {
-    LOAD_ALL_MC_ACCOUNTS = !!value
+  static set loadAll(value) {
+    if (!value) this.loadAll = value
   }
 
   /**
@@ -57,7 +57,7 @@ class MCAPI_ACCOUNTS {
     
     const account = new MojangAccount(body),
           accProfiles = account.profiles,
-          profiles = this.LOAD_ALL_MC_ACCOUNTS ? accProfiles.list : [accProfiles.selected],
+          profiles = this.loadAll ? accProfiles.list : [accProfiles.selected],
           len = profiles.length
 
     for (let i = 0; i < len; i++) {

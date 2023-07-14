@@ -102,7 +102,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
         return false
       }
         
-      // No content, as expected
+      // No content (as expected)
       if (err.code === 204) {
         this.setAttributes(_slim, url)
         return true

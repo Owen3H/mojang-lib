@@ -5,46 +5,52 @@ import MCAPIError from '../utils/MCAPIError.js'
 class MCAPI_PLAYERS {
   /**
    * Get profile info of an unlogged user
-   *
    * @param username The user's name
    */
-  static get(username: string, raw = false): Promise<RegularPlayer> {
-    return new Promise((resolve, reject) => {
-      reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username)
-        .then(async res => {
-          const json = await res.body.json()
-          this.getByUUID(json.id, raw).then(resolve).catch(reject)
-        }).catch((err) => {
-          if (err instanceof MCAPIError && err.code === 204) reject(new MCAPIError(204, "(uuid fetcher) Username not recognized"))
-          else if (err instanceof MCAPIError && err.code === 429) reject(new MCAPIError(429, "(uuid fetcher) You have reached the API request limit"))
-          else reject(err)
-        })
-    })
+  static async get(username: string, raw = false): Promise<RegularPlayer> {
+      try {
+        const res = await reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username)
+        const json = await res.body.json()
+
+        return await this.getByUUID(json.id, raw)
+      }
+      catch(e) {
+        this.handleError(e, 
+          "[UUID Fetcher] - Username not recognized",
+          "[UUID Fetcher] - You have reached the API request limit"
+        )
+
+        return null
+      }
   }
 
   /**
    * Get profile info of an unlogged user by UUID.
-   *
    * @param uuid The user's uuid
    */
-  static getByUUID = async (uuid: string, raw?: boolean): Promise<RegularPlayer> => {
+  static async getByUUID(uuid: string, raw?: boolean): Promise<RegularPlayer> {
     try {
       const res = await reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid)
       const userData = await res.body.json()
       
       return raw ? userData : new RegularPlayer(userData)
     } catch(e) {
-      if (!(e instanceof MCAPIError)) console.error(e)
-      else {
-        const msg = e.code == 429 
-          ? "(textures fetcher) You have reached the API request limit"
-          : "(textures fetcher) UUID not recognized"
-  
-        console.error(new MCAPIError(e.code, msg))
-      }
+      this.handleError(e, 
+        "[Textures Fetcher] - UUID not recognized",
+        "[Textures Fetcher] - You have reached the API request limit"
+      )
   
       return null
     }
+  }
+
+  private static handleError = (err: Error, msg1: string, msg2: string) => {
+    if (err instanceof MCAPIError) {
+      const msg = err.code == 429 ? msg2 : msg1
+      err = new MCAPIError(err.code, msg)
+    }
+
+    console.error(err)
   }
 }
 
