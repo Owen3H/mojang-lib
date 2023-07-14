@@ -3,6 +3,7 @@ import pkg from './package.json' assert { type: 'json' }
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 import json from '@rollup/plugin-json'
+import nodePolyfills from 'rollup-plugin-polyfill-node'
 
 const generatedCode = {
     arrowFunctions: true,
@@ -13,12 +14,15 @@ const generatedCode = {
 const source = {
     input: 'src/index.ts',
     external: ['undici-shim', 'tslib', 'net'],
-    plugins: [esbuild(), json()],
+    plugins: [esbuild(), json(), nodePolyfills()],
     output: [{ 
         generatedCode, 
         file: pkg.main, 
         format: 'umd',
-        name: 'mojanglib'
+        name: 'mojanglib',
+        globals: {
+            'undici-shim': 'undici'
+        }
     }, {
         generatedCode,
         file: pkg.module, 
