@@ -83,7 +83,10 @@ class Requests {
             totalReadingDataBuffer = new MinecraftPacket(),
             client = new Socket()
             
-      client.setTimeout(timeout ?? 30000)
+      // Only set timeout in node. (can't find a polyfill)
+      if (typeof window !== 'object') 
+        client.setTimeout(timeout ?? 30000)
+
       client.connect(port, address)
   
       client.on("connect", () => {
