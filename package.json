@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "exports": {
     "node": {
