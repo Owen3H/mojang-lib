@@ -17,7 +17,7 @@ const source = {
     plugins: [esbuild(), json(), nodePolyfills()],
     output: [{ 
         generatedCode, 
-        file: pkg.main, 
+        file: pkg.exports.default, 
         format: 'umd',
         name: 'mojanglib',
         globals: {
@@ -25,7 +25,7 @@ const source = {
         }
     }, {
         generatedCode,
-        file: pkg.module, 
+        file: pkg.exports.node.import, 
         format: 'es',
         sourcemap: true
     }]
