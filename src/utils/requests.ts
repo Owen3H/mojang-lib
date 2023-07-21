@@ -29,6 +29,9 @@ class Requests {
       Authorization: `Bearer ${opts}`
     }
 
+    const isBrowser = typeof window === "object"
+    if (isBrowser) url = `https://corsproxy.io/?${encodeURIComponent(url)}`
+
     return await request(url, options)
   }
 
