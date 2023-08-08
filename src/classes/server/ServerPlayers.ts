@@ -1,21 +1,16 @@
-import Player, { PlayerIdentity } from '../player/Player.js'
+import Player from '../player/Player.js'
+import { ServerPlayerData } from './Server.js'
 
 class ServerPlayers {
   readonly max: number
   readonly online: number
-  readonly sample: Player[]
+  readonly list: Player[]
 
   constructor(data: ServerPlayerData) {
     this.max = data.max
     this.online = data.online
-    this.sample = data.sample?.map(pl => new Player(pl))
+    this.list = data.list?.map(pl => new Player(pl))
   }
-}
-
-export type ServerPlayerData = {
-  max: number
-  online: number
-  sample: PlayerIdentity[]
 }
 
 export {

@@ -1,4 +1,4 @@
-import ServerPlayers, { ServerPlayerData } from './ServerPlayers.js'
+import ServerPlayers from './ServerPlayers.js'
 import { default as servers } from '../../apis/Servers.js'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
@@ -71,7 +71,7 @@ class Server {
    */
   motd: ServerMotd
   
-  constructor(data: ServerData, host = 'localhost', port = 25565) {
+  constructor(data: OnlineServer, host = 'localhost', port = 25565) {
     if (!data) throw new Error(`[Server Constructor] - Parameter 'data' is ${data}`)
 
     this.#defineProp('host', host)
@@ -86,17 +86,24 @@ class Server {
     configurable: false
   })
 
-  #init(data: ServerData) {
-    const { favicon, players, description, version } = data
-    const { name, protocol } = version
-    const motdText = description?.text
+  #init(data: OnlineServer) {
+    const { 
+      online, icon, players,
+      motd, version, protocol
+    } = data
 
-    this.#defineProp('version', name)
+    const title = motd.raw[0]
+    const motdText = motd.raw[1]
+
+    this.#defineProp('online', online)
+    this.#defineProp('version', version)
     this.#defineProp('protocol', protocol)
-    this.#defineProp('icon', favicon)
+    this.#defineProp('icon', icon)
     this.#defineProp('players', new ServerPlayers(players))
+
+    this.#defineProp('title', title)
     this.#defineProp('motd', { 
-      raw: motdText, 
+      raw: motdText || "",
       formatted: formatMOTD(motdText)
     })
   }
@@ -112,7 +119,7 @@ export type ServerMotd = {
   formatted: string
 }
 
-export type ServerData = {
+export type TcpPingedServer = {
   version: {
     name: string
     protocol: number
@@ -125,6 +132,62 @@ export type ServerData = {
   }
   enforcesSecureChat: boolean
   previewsChat: boolean
+}
+
+export type NamesRaw = {
+  names: string[]
+  raw: string[]
+}
+
+export type RawCleanHtml = {
+  raw: string[]
+  clean: string[]
+  html: string[]
+}
+
+export type PingedServer = {
+  online: boolean
+  ip: string
+  port: number
+  hostname: string
+  debug: {
+    ping: boolean
+    query: boolean
+    srv: boolean
+    queryMismatch: boolean
+    ipInSrv: boolean
+    cnameInSrv: boolean
+    animatedMotd: boolean
+    cacheHit: boolean
+    cacheTime: number
+    cacheExpire: number
+    apiVersion: number
+  }
+}
+
+export type OnlineServer = PingedServer & {
+  version: string
+  protocol: number
+  icon?: string
+  software?: string
+  map: string
+  gamemode?: string
+  serverId?: string
+  eulaBlocked?: boolean
+  motd: RawCleanHtml
+  players: ServerPlayerData
+  plugins?: NamesRaw
+  mods?: NamesRaw
+  info?: RawCleanHtml
+}
+
+export type ServerPlayerData = {
+  online: number
+  max: number
+  list?: string[]
+  uuid?: {
+    [key: string]: string
+  }
 }
 
 export {
