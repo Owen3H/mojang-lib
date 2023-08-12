@@ -1,5 +1,6 @@
 import ServerPlayers from './ServerPlayers.js'
 import { default as servers } from '../../apis/Servers.js'
+import { PlayerIdentity } from '../player/Player.js'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
 
@@ -110,7 +111,7 @@ class Server {
 
   refresh = async () => {
     const data = await servers.ping(this.host, this.port)
-    this.#init(data)
+    this.#init(data as OnlineServer)
   }
 }
 
@@ -139,6 +140,11 @@ export type NamesRaw = {
   raw: string[]
 }
 
+type NameVersion = {
+  name: string
+  version: string
+}
+
 export type RawCleanHtml = {
   raw: string[]
   clean: string[]
@@ -149,7 +155,7 @@ export type PingedServer = {
   online: boolean
   ip: string
   port: number
-  hostname: string
+  hostname?: string
   debug: {
     ping: boolean
     query: boolean
@@ -165,26 +171,29 @@ export type PingedServer = {
   }
 }
 
-export type OnlineServer = PingedServer & {
+export type OnlineServer = PingedServer & ServerOptionals & {
   version: string
-  protocol: number
+  protocol: number | NameVersion[]
   icon?: string
-  software?: string
   map: string
   gamemode?: string
   serverId?: string
   eulaBlocked?: boolean
   motd: RawCleanHtml
   players: ServerPlayerData
-  plugins?: NamesRaw
-  mods?: NamesRaw
-  info?: RawCleanHtml
 }
+
+type ServerOptionals = Partial<{
+  software: string
+  plugins: NamesRaw | NameVersion[]
+  mods: NamesRaw | NameVersion[]
+  info: RawCleanHtml
+}>
 
 export type ServerPlayerData = {
   online: number
   max: number
-  list?: string[]
+  list?: PlayerIdentity[]
   uuid?: {
     [key: string]: string
   }

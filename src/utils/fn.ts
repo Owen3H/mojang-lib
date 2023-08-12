@@ -6,6 +6,8 @@ const Base64 = {
     decode: (data: string) => Buffer.from(data, 'base64').toString('utf-8')
 }
 
+const isNode = () => typeof process !== "undefined" && process?.versions?.node
+ 
 export {
-    Base64
+    Base64, isNode
 }

@@ -11,16 +11,15 @@ class Player {
   constructor(data: PlayerIdentity) {
     this.uuid = data.id
     this.username = data.name
-
-
-    //this.properties = data.properties
+    this.properties = data.properties
   }
 }
 
 export type PlayerIdentity = {
-  id: string
+  uuid?: string
+  id?: string
   name: string
-  properties: PlayerProperty[]
+  properties?: PlayerProperty[]
   demo?: boolean
   legacy?: boolean
 }

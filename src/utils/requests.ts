@@ -4,7 +4,7 @@ import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError.js'
 import MinecraftPacket from '../classes/misc/MinecraftPacket.js'
-import { ServerData } from '../classes/server/Server.js'
+import { OnlineServer, PingedServer } from '../classes/server/Server.js'
 
 type PingParams = {
   address: string
@@ -64,6 +64,7 @@ class Requests {
 
   /**
    * Pings a Minecraft server asynchronously and returns a raw object with server data.
+   * Should not be called when running outside of a Node process.
    * 
    * Used internally to create a new Server instance.
    * ```
@@ -77,16 +78,13 @@ class Requests {
    * @param protocol The protocol to use for the ping
    * @param timeout  Duration in ms before the connection times out
    */
-  static sendServerPing = (pingParams: PingParams): Promise<ServerData> => {
+  static sendServerPing(pingParams: PingParams): Promise<OnlineServer | PingedServer> {
     return new Promise((resolve, reject) => {
       const { address, port, protocol, timeout } = pingParams,
             totalReadingDataBuffer = new MinecraftPacket(),
             client = new Socket()
             
-      // Only set timeout in node. (can't find a polyfill)
-      if (typeof window !== 'object') 
-        client.setTimeout(timeout ?? 30000)
-
+      client.setTimeout(timeout ?? 30000)
       client.connect(port, address)
   
       client.on("connect", () => {
@@ -110,8 +108,10 @@ class Requests {
   
       client.on('close', () => {
         totalReadingDataBuffer.readVarInt()
-        const response_data = totalReadingDataBuffer.readString()
-        resolve(JSON.parse(response_data))
+        const res = totalReadingDataBuffer.readString()
+        const data = JSON.parse(res)
+
+        resolve(data)
       })
   
       client.on('timeout', () => {

@@ -1,5 +1,6 @@
 import { Requests as reqs } from '../utils/requests.js'
-import Server from '../classes/server/Server.js'
+import Server, { OnlineServer, PingedServer } from '../classes/server/Server.js'
+import { isNode } from '../utils/fn.js'
 
 class MCAPI_SERVERS {
   /**
@@ -29,23 +30,35 @@ class MCAPI_SERVERS {
    */
   static get = async (host: string, port?: number) => {
     const data = await this.ping(host, port)
-    return new Server(data, host, port)
+    return new Server(data as OnlineServer, host, port)
   }
 
   /**
    * @internal
    */
-  static ping = async (host: string, port?: number) => {
+  static ping = async (
+    host: string, 
+    port?: number
+  ): Promise<PingedServer | OnlineServer> => {
     // Seperate address from the port.
-    let arr = host.split(":")
+    const arr = host.split(":")
     const address = arr[0]
+
+    if (isNode()) {
+      if (!port) port = arr.length > 1 ? parseInt(arr[1]) : 25565
     
-    if (!port) port = arr.length > 1 ? parseInt(arr[1]) : 25565
-    
-    return await reqs.sendServerPing({ address, port }).catch((e: Error) => {
-      console.error(e)
-      return null
-    })
+      return await reqs.sendServerPing({ address, port }).catch((e: Error) => {
+        console.error(e)
+        return null
+      })
+    }
+  
+    // TCP pings can't be sent in the browser,
+    // fallback to API where the response is the same.
+    const url = `https://api.mcsrvstat.us/3/${address}`
+    const res = await fetch(url).catch(console.error)
+
+    return res ? await res.json() : null
   } 
 }
 
