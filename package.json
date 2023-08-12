@@ -55,7 +55,7 @@
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-polyfill-node": "^0.12.0",
     "typedoc": "^0.24.8",
-    "typedoc-theme-hierarchy": "^4.0.0",
+    "typedoc-theme-hierarchy": "^4.1.0",
     "typescript": "^5.1.6"
   }
 }
