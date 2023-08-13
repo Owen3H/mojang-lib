@@ -93,20 +93,22 @@ class Server {
       motd, version, protocol
     } = data
 
-    const title = motd.raw[0]
-    const motdText = motd.raw[1]
-
     this.#defineProp('online', online)
     this.#defineProp('version', version)
     this.#defineProp('protocol', protocol)
     this.#defineProp('icon', icon)
     this.#defineProp('players', new ServerPlayers(players))
 
-    this.#defineProp('title', title)
-    this.#defineProp('motd', { 
-      raw: motdText || "",
-      formatted: formatMOTD(motdText)
-    })
+    if (motd) {
+      const title = motd.raw[0]
+      const motdText = motd.raw[1]
+
+      this.#defineProp('title', title)
+      this.#defineProp('motd', { 
+        raw: motdText || "",
+        formatted: formatMOTD(motdText)
+      })
+    }
   }
 
   refresh = async () => {
