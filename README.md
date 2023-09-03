@@ -7,14 +7,14 @@ The list of changes made are available [here](/CHANGES.md).
 
 ## Install
 ```bash
-npm i mojang-lib
+pnpm add mojang-lib
 ```
 
 ## Usage
 
 ### ESM
 ```js
-import MCAPI from "mojang-lib"
+import { players, servers } from "mojang-lib"
 
 const server = await MCAPI.servers.get('play.earthmc.net')
 console.log(server)
