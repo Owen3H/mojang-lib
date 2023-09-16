@@ -12,8 +12,7 @@
     "dist",
     "src",
     "README.md",
-    "CHANGES.md",
-    "LICENSE"
+    "CHANGES.md"
   ],
   "scripts": {
     "test": "cd test-pkg && pnpm run test",
