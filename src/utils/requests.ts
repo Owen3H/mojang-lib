@@ -1,5 +1,6 @@
 //@ts-ignore
 import { request, Dispatcher } from 'undici-shim'
+import net from 'net'
 import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError.js'
@@ -62,6 +63,8 @@ class Requests {
    */
   static DELETE = (url: string, opts?: ReqOptions) => this.send(url, opts, "DELETE")
 
+  static SOCKET_TIMEOUT = 300000
+
   /**
    * Pings a Minecraft server asynchronously and returns a raw object with server data.
    * Should not be called when running outside of a Node process.
@@ -81,14 +84,15 @@ class Requests {
   static sendServerPing(pingParams: PingParams): Promise<OnlineServer | PingedServer> {
     return new Promise((resolve, reject) => {
       const { address, port, protocol, timeout } = pingParams,
-            totalReadingDataBuffer = new MinecraftPacket(),
-            client = new Socket()
+            totalReadingDataBuffer = new MinecraftPacket()
             
-      client.setTimeout(timeout ?? 30000)
-      client.connect(port, address)
-  
-      client.on("connect", () => {
+      const client = net.connect({ 
+        host: address, 
+        port: port,
+        timeout: timeout || this.SOCKET_TIMEOUT 
+      }, () => { // 'connect' listener
         const handshake = new MinecraftPacket()
+
         handshake.writeVarInt(0)
         handshake.writeVarInt(protocol)
         handshake.writeString(address)

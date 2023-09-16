@@ -65,7 +65,7 @@ class MinecraftPacket {
 
   readString() {
     const len = this.readVarInt()
-    return this.buffer.toString("utf8", this._cursor, this._cursor += len)
+    return this.buffer.toString("utf8", this.cursor, this._cursor += len)
   }
 
   send(socket: Socket) {

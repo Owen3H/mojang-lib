@@ -29,26 +29,34 @@ class Server {
    * @defaultValue `localhost`
    * @readonly
    */
-  host: string
+  #host: string
+
+  get host() { return this.#host }
 
   /**
    * The port used by the server.
    * @defaultValue `25565`
    * @readonly
    */
-  port: number
+  #port: number
+
+  get port() { return this.#port }
 
   /**
    * The server icon in the form of a {@link Blob}.
    * @readonly
    */
-  icon: string
+  #icon: string
+
+  get icon() { return this.#icon }
 
   /**
    * The version (or range) this server supports.
    * @readonly
    */
-  version: string
+  #version: string
+  
+  get version() { return this.#version }
 
   /**
    * The protocol version number of this server, used to check for incompatibilites
@@ -57,35 +65,51 @@ class Server {
    * @see {@link https://wiki.vg/Protocol_version_numbers List of protocol/version mappings.}
    * @readonly
    */
-  protocol: number
+  #protocol: number | NameVersion[]
+
+  get protocol() { return this.#protocol }
 
   /**
    * The instance of {@link ServerPlayers}
    * @readonly
    */
-  players: ServerPlayers
+  #players: ServerPlayers
+
+  get players() { return this.#players }
+
+  /**
+   * The title configured by this server, as shown above the MOTD.
+   * @readonly
+   */
+  #title: string
+
+  get title() { return this.#title }
 
   /**
    * The 'Message of the Day' configured by this server, a.k.a the description
-   * shown below the server name when connecting via the server list.
+   * shown below the title when connecting via the server list.
    * @readonly
    */
-  motd: ServerMotd
+  #motd: ServerMotd
+
+  get motd() { return this.#motd }
+
+  /**
+   * Denotes whether this server is up and not offline.
+   * @readonly
+   */
+  #online: boolean
+
+  get online() { return this.#online }
   
   constructor(data: OnlineServer, host = 'localhost', port = 25565) {
     if (!data) throw new Error(`[Server Constructor] - Parameter 'data' is ${data}`)
 
-    this.#defineProp('host', host)
-    this.#defineProp('port', port)
+    this.#host = host
+    this.#port = port
 
     this.#init(data)
   }
-
-  #defineProp = (k: string, v: any) => Object.defineProperty(this, k, { 
-    value: v, 
-    writable: false, 
-    configurable: false
-  })
 
   #init(data: OnlineServer) {
     const { 
@@ -93,26 +117,26 @@ class Server {
       motd, version, protocol
     } = data
 
-    this.#defineProp('online', online)
-    this.#defineProp('version', version)
-    this.#defineProp('protocol', protocol)
-    this.#defineProp('icon', icon)
-    this.#defineProp('players', new ServerPlayers(players))
+    this.#online = online
+    this.#version = version
+    this.#protocol = protocol
+    this.#icon = icon
+    this.#players = new ServerPlayers(players)
 
     if (motd) {
       const title = motd.raw[0]
       const motdText = motd.raw[1]
 
-      this.#defineProp('title', title)
-      this.#defineProp('motd', { 
+      this.#title = title
+      this.#motd = {
         raw: motdText || "",
         formatted: formatMOTD(motdText)
-      })
+      }
     }
   }
 
   refresh = async () => {
-    const data = await servers.ping(this.host, this.port)
+    const data = await servers.ping(this.#host, this.#port)
     this.#init(data as OnlineServer)
   }
 }
