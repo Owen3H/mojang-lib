@@ -25,7 +25,7 @@ const source = {
         }
     }, {
         generatedCode,
-        file: pkg.exports.node.import, 
+        file: pkg.exports.import, 
         format: 'es',
         sourcemap: true
     }]

@@ -3,24 +3,24 @@
   "version": "1.12.1",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "exports": {
-    "node": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
     "default": "./dist/index.js"
   },
   "types": "dist/types.d.ts",
   "files": [
     "dist",
+    "src",
     "README.md",
     "CHANGES.md",
     "LICENSE"
   ],
   "scripts": {
-    "test": "cd test-pkg && npm run test",
+    "test": "cd test-pkg && pnpm run test",
     "clean": "rimraf dist",
-    "rollup": "npm run clean && rollup -c",
-    "build": "npm run rollup && npm run typedoc",
+    "rollup": "pnpm run clean && rollup -c && pnpm run dts",
+    "dts": "tsc --declaration true --emitDeclarationOnly true --declarationMap",
+    "build": "pnpm run rollup && pnpm run typedoc",
     "typedoc": "npx typedoc --options typedoc.json"
   },
   "funding": "https://github.com/sponsors/Owen3H",
