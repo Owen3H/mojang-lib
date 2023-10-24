@@ -1,4 +1,4 @@
-# mojang-lib ![GitHub repo size](https://img.shields.io/github/repo-size/Owen3H/mojang-lib)
+# mojang-lib ![GitHub repo size](https://img.shields.io/github/repo-size/Owen3H/mojang-lib) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mojang-lib)
 A modern wrapper for interacting with the Mojang API.<br><p>
 This library is a rewritten version of [minecraft-lib](https://github.com/Emrio/minecraft-js) in Typescript.<br>
 The list of changes made are available [here](/CHANGES.md).
@@ -6,9 +6,9 @@ The list of changes made are available [here](/CHANGES.md).
 [Read the docs](https://owen3h.github.io/mojang-lib)
 
 ## Install
-```bash
-pnpm add mojang-lib
-```
+[PNPM](https://pnpm.io/installation#using-npm) - `pnpm add mojang-lib` (Recommended)<br>
+[NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - `npm i mojang-lib`<br>
+[Yarn](https://classic.yarnpkg.com/en/docs/getting-started) - `yarn add mojang-lib` 
 
 ## Usage
 
@@ -16,18 +16,18 @@ pnpm add mojang-lib
 ```js
 import { players, servers } from "mojang-lib"
 
-const server = await MCAPI.servers.get('play.earthmc.net')
+const server = await servers.get('play.earthmc.net')
 console.log(server)
 
-const player = await MCAPI.players.get('Owen3H')
+const player = await players.get('Owen3H')
 console.log(player)
 ```
 
 ### CommonJS
 ```js
-const { MCAPI } = require("mojang-lib")
+const MCAPI = require("mojang-lib")
 
-const runTest = async () => {
+async function runTest() {
   const server = await MCAPI.servers.get('play.earthmc.net')
   console.log(server)
 
