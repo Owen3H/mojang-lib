@@ -7,9 +7,8 @@ The list of changes made are available [here](/CHANGES.md).
 [Read the docs](https://owen3h.github.io/mojang-lib)
 
 ## Install
-[PNPM](https://pnpm.io/installation#using-npm) - `pnpm add mojang-lib` (Recommended)<br>
-[NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - `npm i mojang-lib`<br>
-[Yarn](https://classic.yarnpkg.com/en/docs/getting-started) - `yarn add mojang-lib` 
+[Bun](https://bun.sh) - `bun add mojang-lib`\
+[PNPM](https://pnpm.io/installation#using-npm) - `pnpm add mojang-lib`<br>
 
 ## Usage
 
