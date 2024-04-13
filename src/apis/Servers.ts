@@ -12,7 +12,7 @@ class MCAPI_SERVERS {
    */
   static blockedServers = async () => {
     const serverList = await reqs.GET("https://sessionserver.mojang.com/blockedservers")
-        .then(res => res.body.text()).catch(console.error)
+        .then((res: any) => res.body?.text() || res.text()).catch(console.error)
 
     if (!serverList) return null
     return serverList.split("\n")

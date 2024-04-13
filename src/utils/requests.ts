@@ -1,7 +1,6 @@
 //@ts-ignore
 import { request, Dispatcher } from 'undici-shim'
 import net from 'net'
-import { Socket } from 'net'
 
 import MCAPIError from './MCAPIError.js'
 import MinecraftPacket from '../classes/misc/MinecraftPacket.js'
@@ -37,7 +36,7 @@ class Requests {
   }
 
   /**
-   * Sends an HTTP `GET` request to the inputted URL.
+   * Sends an HTTP `GET` request to the input URL.
    *
    * @internal
    * @param url The URL to send the request to.
@@ -46,7 +45,7 @@ class Requests {
   static GET = (url: string, opts?: ReqOptions) => this.send(url, opts)
 
   /**
-   * Sends an HTTP `POST` request to the inputted URL.
+   * Sends an HTTP `POST` request to the input URL.
    *
    * @internal
    * @param url The URL to send the request to.
@@ -55,7 +54,7 @@ class Requests {
   static POST = (url: string, opts?: ReqOptions) => this.send(url, opts, "POST")
 
   /**
-   * Sends an HTTP `DELETE` request to the inputted URL.
+   * Sends an HTTP `DELETE` request to the input URL.
    *
    * @internal
    * @param url The URL to send the request to.

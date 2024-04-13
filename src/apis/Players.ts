@@ -10,9 +10,9 @@ class MCAPI_PLAYERS {
   static async get(username: string, raw = false): Promise<RegularPlayer> {
       try {
         const res = await reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username)
-        const json = await res.body.json()
+          .then((res: any) => res.body?.json() || res.json())
 
-        return await this.getByUUID(json.id, raw)
+        return await this.getByUUID(res.id, raw)
       }
       catch(e) {
         this.handleError(e, 
@@ -30,8 +30,8 @@ class MCAPI_PLAYERS {
    */
   static async getByUUID(uuid: string, raw?: boolean): Promise<RegularPlayer> {
     try {
-      const res = await reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid)
-      const userData = await res.body.json()
+      const userData = await reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid)
+        .then((res: any) => res.body?.json() || res.json())
       
       return raw ? userData : new RegularPlayer(userData)
     } catch(e) {

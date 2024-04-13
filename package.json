@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "main": "./dist/index.js",
   "exports": {
@@ -16,12 +16,12 @@
     "CHANGES.md"
   ],
   "scripts": {
-    "test": "cd test-pkg && pnpm run test",
-    "clean": "rimraf dist",
-    "rollup": "pnpm run clean && rollup -c && pnpm run dts",
+    "test": "cd test-pkg && bun run test",
+    "clean": "bun x rimraf dist",
+    "rollup": "bun run clean && rollup -c && bun run dts",
     "dts": "tsc --declaration true --emitDeclarationOnly true --declarationMap",
-    "build": "pnpm run rollup && pnpm run typedoc",
-    "typedoc": "npx typedoc --options typedoc.json"
+    "build": "bun run rollup && bun run typedoc",
+    "typedoc": "bun x typedoc --options typedoc.json"
   },
   "funding": "https://github.com/sponsors/Owen3H",
   "repository": {
@@ -41,7 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "tslib": "^2.5.3",
-    "undici-shim": "^1.5.1"
+    "undici-shim": "^1.5.3"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",
@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.43.0",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "rimraf": "^5.0.1",
+    "rimraf": "^5.0.5",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-polyfill-node": "^0.12.0",

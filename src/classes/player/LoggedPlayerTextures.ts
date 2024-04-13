@@ -27,7 +27,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
    * Removes the current skin and sets it to default (Steve).
    */
   resetSkin = async () => {
-    const res = await reqs.DELETE(skins.active, { headers: this.#authHeader })
+    const res = await reqs.DELETE(skins.active, { headers: this.#authHeader }) as any
 
     if (res instanceof MCAPIError) {
       if (res.code === 429) {
@@ -36,8 +36,9 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
       }
     }
 
-    if (res.statusCode !== 204) {
-      console.error(new MCAPIError(res.statusCode, '[Skin Reset] - An error occurred sending request.'))
+    let code = res.statusCode || res.status
+    if (code !== 204) {
+      console.error(new MCAPIError(code, '[Skin Reset] - An error occurred sending request.'))
       return false
     }
 
@@ -63,10 +64,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
       return false
     }
 
-    //#region Handle MIME type validation
-    
-
-    //#endregion
+    //TODO: Handle MIME type validation
 
     const res = await reqs.POST(skins.list, { payload: file, headers: this.#authHeader })
     if (!res) {
