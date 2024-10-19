@@ -55,16 +55,17 @@ class MCAPI_ACCOUNTS {
       return null
     }
     
-    const account = new MojangAccount(body),
-          accProfiles = account.profiles,
-          profiles = this.loadAll ? accProfiles.list : [accProfiles.selected],
-          len = profiles.length
+    const account = new MojangAccount(body)
+    const accProfiles = account.profiles
+    const profiles = this.loadAll ? accProfiles.list : [accProfiles.selected]
+    const len = profiles.length
 
     for (let i = 0; i < len; i++) {
       const profile = profiles[i]
-      if (profile instanceof MinecraftProfile) {
-        if (!profile.player || profile.game == "minecraft")
-          await profile.loadPlayer()
+
+      if (!(profile instanceof MinecraftProfile)) continue
+      if (!profile.player || profile.game == "minecraft") {
+        await profile.loadPlayer()
       }
     }
 

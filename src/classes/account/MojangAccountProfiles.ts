@@ -1,7 +1,11 @@
-import GameProfile from '../profile/GameProfile.js'
+import { type GameProfile } from '../profile/GameProfile.js'
 import MinecraftProfile from '../profile/MinecraftProfile.js'
 import OtherProfile from '../profile/OtherProfile.js'
-import { MojangAccountData } from './MojangAccount.js'
+
+import {
+  type MojangAccount,
+  type MojangAccountData 
+} from './MojangAccount.js'
 
 /**  
  * Represents a Mojang Account's game profiles
@@ -10,7 +14,7 @@ class MojangAccountProfiles {
   readonly list: GameProfile[]
   readonly selected: GameProfile
 
-  constructor(data: MojangAccountData, associated_account: any) {
+  constructor(data: MojangAccountData, associated_account: MojangAccount) {
     const profiles = data.availableProfiles ?? []
     
     for (const profile of profiles) {

@@ -1,14 +1,14 @@
 # mojang-lib ![GitHub repo size](https://img.shields.io/github/repo-size/Owen3H/mojang-lib) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mojang-lib?label=minzip)
 
 A modern wrapper for interacting with the Mojang API.<br><p>
-This library is a rewritten version of [minecraft-lib](https://github.com/Emrio/minecraft-js) in Typescript.<br>
+This library is a rewritten version of [minecraft-lib](https://github.com/Emrio/minecraft-js) in TypeScript.<br>
 The list of changes made are available [here](/CHANGES.md).
 
 [Read the docs](https://owen3h.github.io/mojang-lib)
 
 ## Install
 [Bun](https://bun.sh) - `bun add mojang-lib`\
-[PNPM](https://pnpm.io/installation#using-npm) - `pnpm add mojang-lib`<br>
+[PNPM](https://pnpm.io/installation#using-npm) - `pnpm add mojang-lib`
 
 ## Usage
 

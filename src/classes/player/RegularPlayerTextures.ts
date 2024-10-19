@@ -16,8 +16,8 @@ class RegularPlayerTextures {
   constructor(textureData: any) {
     const { textures, timestamp } = JSON.parse(Base64.decode(textureData))
     
-    const skinTex = textures.SKIN,
-          capeTex = textures.CAPE
+    const skinTex = textures.SKIN
+    const capeTex = textures.CAPE
 
     this.skin_url = skinTex?.url
     this.cape_url = capeTex?.url

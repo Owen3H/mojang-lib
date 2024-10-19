@@ -1,5 +1,5 @@
-import { ProfileProperty } from './GameProfile.js'
-import GameProfile from './GameProfile.js'
+import GameProfile, { type ProfileProperty } from './GameProfile.js'
+import { type MojangAccount } from "../account/MojangAccount.js"
 
 /**  
  * Represents a Mojang game profile other than Minecraft
@@ -7,7 +7,8 @@ import GameProfile from './GameProfile.js'
 class OtherProfile extends GameProfile {
   [name: string]: unknown
 
-  constructor(data: ProfileProperty, associated_account: any) {
+  // TODO: Give the params proper types.
+  constructor(data: ProfileProperty, associated_account: MojangAccount) {
     super(data, associated_account)
     Object.assign(this, data)
   }

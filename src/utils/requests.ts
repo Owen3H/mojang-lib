@@ -82,14 +82,13 @@ class Requests {
    */
   static sendServerPing(pingParams: PingParams): Promise<OnlineServer | PingedServer> {
     return new Promise((resolve, reject) => {
-      const { address, port, protocol, timeout } = pingParams,
-            totalReadingDataBuffer = new MinecraftPacket()
-            
-      const client = net.connect({ 
-        host: address, 
-        port: port,
-        timeout: timeout || this.SOCKET_TIMEOUT 
-      }, () => { // 'connect' listener
+      const { address, port, protocol, timeout } = pingParams
+      const totalReadingDataBuffer = new MinecraftPacket()
+
+      const connectOpts = { host: address, port, timeout: timeout || this.SOCKET_TIMEOUT }
+
+      // 'connect' listener
+      const client = net.connect(connectOpts, () => { 
         const handshake = new MinecraftPacket()
 
         handshake.writeVarInt(0)

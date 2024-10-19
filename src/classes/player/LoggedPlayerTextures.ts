@@ -25,6 +25,7 @@ class LoggedPlayerTextures extends RegularPlayerTextures {
   /**
    * @public
    * Removes the current skin and sets it to default (Steve).
+   * @returns {boolean} Boolean indicating whether the reset was successful.
    */
   resetSkin = async () => {
     const res = await reqs.DELETE(skins.active, { headers: this.#authHeader }) as any

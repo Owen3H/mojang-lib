@@ -9,6 +9,7 @@ import { PlayerProperty } from './Player.js'
 class LoggedPlayer extends RegularPlayer {
   readonly associated_account: any
   
+  // TODO: Give the params proper types.
   constructor(playerData: any, associated_account: any) {
     super(playerData, true)
 

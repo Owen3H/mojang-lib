@@ -1,15 +1,15 @@
 ## List of Changes (From original `minecraft-lib`)
 
 ### ⬜ General QoL
-- Package size reduction of over **150%** by removing `minecraft-data` and `js-base64`.
+- Removed big `minecraft-data` dependency and replaced `js-base64` with .
 - `MCAPI_MISC` export removed as its features were deprecated.
 - Type declarations included for clarity and easier debugging.
 
-### ⬜ Fixed vulnerabilities<br>
+### ⬜ Fixed vulnerabilities
 - Dependency `request` no longer used as it was unmaintained.
 - Fixed 12 high level issues via `npm audit fix`.
 
-### ⬜ Improved performance<br>
+### ⬜ Improved perf/safety
 - Deprecated `request` dependency replaced with [Undici](https://github.com/nodejs/undici) for much better latency & throughput.
 - Reduced slow `for in` and `for of` loops with optimized alternatives.
 - `Map` now used over built-in object (where applicable).

@@ -1,6 +1,8 @@
 import MCAPI_PLAYERS from '../../apis/Players.js'
-import GameProfile from './GameProfile.js'
+import GameProfile, { type ProfileProperty } from './GameProfile.js'
 import LoggedPlayer from '../player/LoggedPlayer.js'
+
+import { type MojangAccount } from '../account/MojangAccount.js'
 
 /** 
  * Represents a user's Minecraft profile
@@ -13,7 +15,8 @@ class MinecraftProfile extends GameProfile {
 
   player: any
 
-  constructor(data: any, associated_account: any) {
+  // TODO: Give `data` param a proper type.
+  constructor(data: any, associated_account: MojangAccount) {
     super(data, associated_account)
 
     this.legacy = data.legacyProfile
@@ -31,13 +34,15 @@ class MinecraftProfile extends GameProfile {
     })
   }
 
-  changeName = async () => {
+  // TODO: Implement this.
+  // changeName = async () => {
     
-  }
+  // }
   
-  isNameAvailable = async () => {
+  // TODO: Implement this.
+  // isNameAvailable = async () => {
 
-  }
+  // }
 }
 
 export {
