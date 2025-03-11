@@ -4,20 +4,23 @@ import { isNode } from '../utils/fn.js'
 
 class MCAPI_SERVERS {
   /**
-   * The list of blocked servers. 
-   * Expressed as SHA1 encoded IP addresses.
-   * 
-   * @see
-   * Refer to the '*Blocked Servers*' section of {@link https://wiki.vg/Mojang_API#Blocked_Servers | the wiki}.
+   * The list of blocked servers. Expressed as SHA1 encoded IP addresses.
+   * @see Refer to the '*Blocked Servers*' section of {@link https://wiki.vg/Mojang_API#Blocked_Servers | the wiki}.
    */
-  static blockedServers = async () => {
-    const serverList = await reqs.GET("https://sessionserver.mojang.com/blockedservers")
-        .then((res: any) => res.body?.text() || res.text()).catch(console.error)
+  static blockedServers = async (): Promise<null | string[]> => {
+    try {
+      const res = await fetch("https://sessionserver.mojang.com/blockedservers")
+      const serverList = await res.text().catch(console.error)
 
-    if (!serverList) return null
-    return serverList.split("\n")
+      if (!serverList) return null
+      return serverList.split("\n")
+    }
+    catch(e: any) {
+      console.error(e)
+      return null
+    }
   }
-    
+
   /**
    * Pings and retreives info on the requested server.
    *
@@ -39,26 +42,31 @@ class MCAPI_SERVERS {
   static ping = async (
     host: string, 
     port?: number
-  ): Promise<PingedServer | OnlineServer> => {
+  ): Promise<null | PingedServer | OnlineServer> => {
     // Seperate address from the port.
     const arr = host.split(":")
     const address = arr[0]
 
-    if (isNode()) {
-      if (!port) port = arr.length > 1 ? parseInt(arr[1]) : 25565
-    
-      return await reqs.sendServerPing({ address, port }).catch((e: Error) => {
-        console.error(e)
-        return null
-      })
+    if (!isNode()) {
+      // TCP pings can't be sent in the browser, fallback to API where the response is the same.
+      const url = `https://api.mcsrvstat.us/3/${address}`
+      const res = await fetch(url).catch(console.error) // TODO: Is it worth using reqs.GET here to use proxy?
+
+      return res ? await res.json() : null
     }
   
-    // TCP pings can't be sent in the browser,
-    // fallback to API where the response is the same.
-    const url = `https://api.mcsrvstat.us/3/${address}`
-    const res = await fetch(url).catch(console.error)
+    //#region We are in Node, prefer TCP over HTTP.
+    if (!port) {
+      port = arr.length > 1 ? parseInt(arr[1]) : 25565
+    }
 
-    return res ? await res.json() : null
+    try {
+      return await reqs.sendServerPing({ address, port })
+    } catch(e: any) {
+      console.error(e)
+      return null
+    }
+    //#endregion
   } 
 }
 

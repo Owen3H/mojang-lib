@@ -50,17 +50,16 @@
 <section class="tsd-panel tsd-member"><a id="blockedServers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>blocked<wbr/>Servers</span><a href="#blockedServers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="blockedServers.blockedServers-1"><span class="tsd-kind-call-signature">blocked<wbr/>Servers</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><a href="#blockedServers.blockedServers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="blockedServers.blockedServers-1"><span class="tsd-kind-call-signature">blocked<wbr/>Servers</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#blockedServers.blockedServers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The list of blocked servers. 
-Expressed as SHA1 encoded IP addresses.</p>
+<div class="tsd-comment tsd-typography"><p>The list of blocked servers. Expressed as SHA1 encoded IP addresses.</p>
 </div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography">
 <h4>See</h4><p>Refer to the &#39;<em>Blocked Servers</em>&#39; section of <a href="https://wiki.vg/Mojang_API#Blocked_Servers">the wiki</a>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L13">apis/Servers.ts:13</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L10">apis/Servers.ts:10</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="get" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>get</span><a href="#get" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -87,7 +86,7 @@ Otherwise, it will fallback to the default of <code>25565</code>.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes_server_Server.Server.html" class="tsd-signature-type tsd-kind-class">Server</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L31">apis/Servers.ts:31</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L34">apis/Servers.ts:34</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="ping" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>ping</span><a href="#ping" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -103,7 +102,7 @@ Otherwise, it will fallback to the default of <code>25565</code>.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/classes_server_Server.PingedServer.html" class="tsd-signature-type tsd-kind-type-alias">PingedServer</a><span class="tsd-signature-symbol"> | </span><a href="../types/classes_server_Server.OnlineServer.html" class="tsd-signature-type tsd-kind-type-alias">OnlineServer</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L39">apis/Servers.ts:39</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/Owen3H/mojang-lib/blob/main/src/apis/Servers.ts#L42">apis/Servers.ts:42</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -213,8 +212,8 @@ Otherwise, it will fallback to the default of <code>25565</code>.</p>
 <ul>
 <li><a class="category__link js-category-link" href="../modules/classes_profile_GameProfile.html#default" data-id="/modules/classes_profile_GameProfile.html#default"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8388608"></use></svg>default</a></li>
 <li><a class="category__link js-category-link" href="classes_profile_GameProfile.GameProfile.html" data-id="/classes/classes_profile_GameProfile.GameProfile.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg>GameProfile</a></li>
-<li><a class="category__link js-category-link" href="../types/classes_profile_GameProfile.AuthenticatedProfile.html" data-id="/types/classes_profile_GameProfile.AuthenticatedProfile.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg>AuthenticatedProfile</a></li>
-<li><a class="category__link js-category-link" href="../types/classes_profile_GameProfile.ProfileProperty.html" data-id="/types/classes_profile_GameProfile.ProfileProperty.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg>ProfileProperty</a></li></ul></li>
+<li><a class="category__link js-category-link" href="../interfaces/classes_profile_GameProfile.AuthenticatedProfile.html" data-id="/interfaces/classes_profile_GameProfile.AuthenticatedProfile.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-256"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)"></path></g></svg>AuthenticatedProfile</a></li>
+<li><a class="category__link js-category-link" href="../interfaces/classes_profile_GameProfile.ProfileProperty.html" data-id="/interfaces/classes_profile_GameProfile.ProfileProperty.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg>ProfileProperty</a></li></ul></li>
 <li><a class="category__link js-category-link category__link--ts" href="../modules/classes_profile_MinecraftProfile.html" data-id="/modules/classes_profile_MinecraftProfile.html">MinecraftProfile.ts</a>
 <ul>
 <li><a class="category__link js-category-link" href="../modules/classes_profile_MinecraftProfile.html#default" data-id="/modules/classes_profile_MinecraftProfile.html#default"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8388608"></use></svg>default</a></li>

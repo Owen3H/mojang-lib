@@ -1,5 +1,3 @@
-//@ts-ignore
-import { request, Dispatcher } from 'undici-shim'
 import net from 'net'
 
 import MCAPIError from './MCAPIError.js'
@@ -19,8 +17,10 @@ type ReqOptions = {
   headers?: {}
 }
 
+type HttpMethod = "GET" | "POST" |  "DELETE"
+
 class Requests {
-  private static send = async (url: string, opts: ReqOptions, method?: Dispatcher.HttpMethod) => {
+  private static send = async (url: string, opts: ReqOptions, method?: HttpMethod) => {
     const options: any = null
 
     if (method) options.method = method
@@ -32,7 +32,7 @@ class Requests {
     const isBrowser = typeof window === "object"
     if (isBrowser) url = `https://corsproxy.io/?${encodeURIComponent(url)}`
 
-    return await request(url, options)
+    return await fetch(url, options)
   }
 
   /**

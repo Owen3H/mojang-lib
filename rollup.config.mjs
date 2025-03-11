@@ -13,16 +13,16 @@ const generatedCode = {
 
 const source = {
     input: 'src/index.ts',
-    external: ['undici-shim', 'tslib', 'net'],
+    external: ['tslib', 'net', /*'undici-shim'*/],
     plugins: [esbuild(), json(), nodePolyfills()],
     output: [{ 
         generatedCode, 
         file: pkg.exports.default, 
         format: 'umd',
         name: 'mojanglib',
-        globals: {
-            'undici-shim': 'undici'
-        }
+        // globals: {
+        //     'undici-shim': 'undici'
+        // }
     }, {
         generatedCode,
         file: pkg.exports.import, 

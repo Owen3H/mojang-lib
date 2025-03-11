@@ -1,7 +1,7 @@
 ## List of Changes (From original `minecraft-lib`)
 
 ### ⬜ General QoL
-- Removed big `minecraft-data` dependency and replaced `js-base64` with .
+- Removed big `minecraft-data` dependency and replaced `js-base64` with built-in alternative.
 - `MCAPI_MISC` export removed as its features were deprecated.
 - Type declarations included for clarity and easier debugging.
 

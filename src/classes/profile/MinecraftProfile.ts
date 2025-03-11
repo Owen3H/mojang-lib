@@ -1,5 +1,5 @@
 import MCAPI_PLAYERS from '../../apis/Players.js'
-import GameProfile, { type ProfileProperty } from './GameProfile.js'
+import GameProfile from './GameProfile.js'
 import LoggedPlayer from '../player/LoggedPlayer.js'
 
 import { type MojangAccount } from '../account/MojangAccount.js'
