@@ -2,27 +2,9 @@
   "name": "mojang-lib",
   "version": "1.13.3",
   "description": "A modern wrapper for interacting with the Mojang API.",
+  "author": "Owen3H",
+  "license": "MIT",
   "main": "./dist/index.js",
-  "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js",
-    "default": "./dist/index.js"
-  },
-  "types": "dist/types.d.ts",
-  "files": [
-    "dist",
-    "src",
-    "README.md",
-    "CHANGES.md"
-  ],
-  "scripts": {
-    "test": "cd test-pkg && bun run test",
-    "clean": "bun x rimraf dist",
-    "rollup": "bun run clean && rollup -c && bun run dts",
-    "dts": "tsc --declaration true --emitDeclarationOnly true --declarationMap",
-    "build": "bun run rollup && bun run typedoc",
-    "typedoc": "bun x typedoc --options typedoc.json"
-  },
   "funding": "https://github.com/sponsors/Owen3H",
   "repository": {
     "type": "git",
@@ -33,12 +15,23 @@
     "minecraft",
     "minecraft-lib",
     "mojang-api",
-    "typescript",
-    "api-wrapper",
-    "node"
+    "typescript"
   ],
-  "author": "Owen77Stubbs",
-  "license": "MIT",
+  "files": ["dist", "src", "README.md", "CHANGES.md"],
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "default": "./dist/index.js"
+  },
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "test": "cd test-pkg && bun run test",
+    "clean": "bun x rimraf dist",
+    "rollup": "bun run clean && rollup -c && bun run dts",
+    "dts": "tsc --declaration true --emitDeclarationOnly true --declarationMap",
+    "build": "bun run rollup && bun run typedoc",
+    "typedoc": "bun x typedoc --options typedoc.json"
+  },
   "dependencies": {
     "tslib": "latest"
   },
