@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.13.3",
+  "version": "1.13.4",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "author": "Owen3H",
   "license": "MIT",
@@ -17,7 +17,12 @@
     "mojang-api",
     "typescript"
   ],
-  "files": ["dist", "src", "README.md", "CHANGES.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "CHANGES.md"
+  ],
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.js",
