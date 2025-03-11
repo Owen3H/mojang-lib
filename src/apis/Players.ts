@@ -4,14 +4,12 @@ import MCAPIError from '../utils/MCAPIError.js'
 
 class MCAPI_PLAYERS {
   /**
-   * Get profile info of an unlogged user
-   * @param username The user's name
+   * Get profile info of an unlogged user.
+   * @param username The user's name.
    */
   static async get(username: string, raw = false): Promise<RegularPlayer> {
       try {
-        const res = await reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username)
-          .then((res: any) => res.body?.json() || res.json())
-
+        const res: { id: string } = await reqs.GET("https://api.mojang.com/users/profiles/minecraft/" + username).then(res => res.json())
         return await this.getByUUID(res.id, raw)
       }
       catch(e) {
@@ -26,13 +24,12 @@ class MCAPI_PLAYERS {
 
   /**
    * Get profile info of an unlogged user by UUID.
-   * @param uuid The user's uuid
+   * @param uuid The user's uuid.
    */
   static async getByUUID(uuid: string, raw?: boolean): Promise<RegularPlayer> {
     try {
-      const userData = await reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid)
-        .then((res: any) => res.body?.json() || res.json())
-      
+      // TODO: Provide a type for userData
+      const userData = await reqs.GET("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid).then(res => res.json())
       return raw ? userData : new RegularPlayer(userData)
     } catch(e) {
       this.handleError(e, 
