@@ -2,16 +2,14 @@ import { Base64 } from '../../utils/fn.js'
 
 /** 
  * Represents a Minecraft player's skin and cape.
- * 
- * Holds readonly info. Properties of this class are not directly writable.
- * To manipulate a player skin, use {@link LoggedPlayerTextures} instead.
+ * To manipulate a player skin, use {@link LoggedPlayerTextures}.
  */
 class RegularPlayerTextures {
-  protected skin_url: any
-  protected cape_url: any
-  protected slim: boolean
+  skin_url: any
+  cape_url: any
+  slim: boolean
 
-  protected uploadedAt: number
+  uploadedAt: number
 
   constructor(textureData: any) {
     const { textures, timestamp } = JSON.parse(Base64.decode(textureData))

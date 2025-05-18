@@ -10,7 +10,7 @@ class RegularPlayer extends Player {
   readonly legacy: boolean
   readonly demo: boolean
 
-  protected textures: RegularPlayerTextures
+  textures: RegularPlayerTextures
 
   constructor(playerData: PlayerIdentity, logged = false) {
     super(playerData)
@@ -22,9 +22,9 @@ class RegularPlayer extends Player {
 
     if (!logged) {
       const texturesProp = properties?.find(prop => prop.name === "textures")
-
-      if (texturesProp?.value) 
+      if (texturesProp?.value) {
         this.textures = new RegularPlayerTextures(texturesProp.value)
+      }
     }
   }
 }
