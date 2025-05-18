@@ -25,7 +25,7 @@ class MCAPI_MISC {
       throw e 
     })
 
-    return new SalesOverview(name, await res.body.json())
+    return new SalesOverview(name, await res.json())
   }
 
   /**

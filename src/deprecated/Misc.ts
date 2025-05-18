@@ -19,11 +19,11 @@ class MCAPI_MISC {
       const status = await reqs.GET("https://status.mojang.com/check")
       return new ServiceStatus(status)
     } catch (e) {
-      let err = e
-      if (e instanceof MCAPIError && e.code === 429) 
-        err = new MCAPIError(429, "[Status Fetcher] - You have reached the API request limit!")
+      if (e instanceof MCAPIError && e.code === 429) {
+        e = new MCAPIError(429, "[Status Fetcher] - You have reached the API request limit!")
+      }
 
-      console.error(err)
+      console.error(e)
       return null
     }
   }
