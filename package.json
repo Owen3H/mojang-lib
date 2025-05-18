@@ -1,6 +1,6 @@
 {
   "name": "mojang-lib",
-  "version": "1.13.5",
+  "version": "1.13.6",
   "description": "A modern wrapper for interacting with the Mojang API.",
   "author": "Owen3H",
   "license": "MIT",
