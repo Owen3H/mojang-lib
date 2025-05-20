@@ -5,7 +5,7 @@ import LoggedPlayer from '../player/LoggedPlayer.js'
 import { type MojangAccount } from '../account/MojangAccount.js'
 
 /** 
- * Represents a user's Minecraft profile
+ * Represents a user's Minecraft profile.
  */
 class MinecraftProfile extends GameProfile {
   readonly legacy: boolean

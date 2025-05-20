@@ -102,12 +102,12 @@ class Requests {
         legacyPing.writeVarInt(0)
         legacyPing.send(client)
       })
-  
+      
       client.on('data', (data) => {
         totalReadingDataBuffer._buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
         client.end()
       })
-  
+
       client.on('close', () => {
         totalReadingDataBuffer.readVarInt()
         const res = totalReadingDataBuffer.readString()
@@ -115,12 +115,12 @@ class Requests {
 
         resolve(data)
       })
-  
+
       client.on('timeout', () => {
         client.destroy()
         reject(new MCAPIError(408, "Timed out"))
       })
-  
+
       client.on('error', (e: Error) => {
         client.destroy()
         reject(e)

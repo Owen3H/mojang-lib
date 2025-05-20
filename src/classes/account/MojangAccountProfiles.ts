@@ -8,7 +8,7 @@ import {
 } from './MojangAccount.js'
 
 /**  
- * Represents a Mojang Account's game profiles
+ * Represents a Mojang Account's game profiles.
  */
 class MojangAccountProfiles {
   readonly list: GameProfile[]
@@ -24,8 +24,9 @@ class MojangAccountProfiles {
 
       this.list.push(gameProfile)
 
-      if (profile.id === data.selectedProfile.id) 
+      if (profile.id === data.selectedProfile.id) {
         this.selected = gameProfile
+      }
     }
   }
 }

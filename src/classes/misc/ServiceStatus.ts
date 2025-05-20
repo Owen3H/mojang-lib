@@ -1,5 +1,3 @@
-const colorToNumber = (color: string) => color === "green" ? 1 : (color === "yellow" ? 0.5 : 0)
-
 /** 
  * Represents the status of Minecraft services
  */
@@ -15,6 +13,8 @@ class ServiceStatus {
     }
   }
 }
+
+const colorToNumber = (color: string) => color === "green" ? 1 : (color === "yellow" ? 0.5 : 0)
 
 export {
   ServiceStatus,

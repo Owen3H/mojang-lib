@@ -22,6 +22,8 @@ class MCAPI {
   }
 }
 
+export * from './classes'
+
 export {
   MCAPI,
   MCAPI as default,
