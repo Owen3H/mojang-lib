@@ -9,11 +9,11 @@ import { Socket } from "net"
  *  @see {@link https://wiki.vg/Server_List_Ping Server List Ping}
  */
 class MinecraftPacket {
-  _buffer = Buffer.from(new Array(1))
-  get buffer() { return this._buffer }
+  #buffer = Buffer.from(new Array(1))
+  get buffer() { return this.#buffer }
   
-  _cursor = 0
-  get cursor() { return this._cursor }
+  #cursor = 0
+  get cursor() { return this.#cursor }
 
   writeVarInt(val: number) {
     do {
@@ -28,15 +28,18 @@ class MinecraftPacket {
     const exceeds = (this.cursor + num) > this.buffer.length
     if (!exceeds) return
 
-    // TODO: I'm not sure I like this. Consider changing.
     const buf = Buffer.from(new Array(num))
-    this._buffer = Buffer.concat([this.buffer, buf])
+    this.appendData(buf)
   }
+
+  appendData(data: Buffer) {
+    this.#buffer = Buffer.concat([this.#buffer, data])
+  } 
 
   writeUByte(val: number) {
     this.addToBuffer(1)
-    this._buffer.writeUInt8(val, this.cursor)
-    this._cursor++
+    this.#buffer.writeUInt8(val, this.cursor)
+    this.#cursor++
   }
 
   writeString(val: string) {
@@ -45,7 +48,7 @@ class MinecraftPacket {
     this.addToBuffer(len)
 
     this.buffer.write(val, this.cursor, len, "utf8")
-    this._cursor += len
+    this.#cursor += len
   }
 
   writeUShort(val: any) {
@@ -65,19 +68,21 @@ class MinecraftPacket {
       cursor++
     } while ((read & 0b10000000) === 128)
 
-    this._cursor += cursor
+    this.#cursor += cursor
     return value
   }
 
   readString() {
     const len = this.readVarInt()
-    return this.buffer.toString("utf8", this.cursor, this._cursor += len)
+    return this.buffer.toString("utf8", this.cursor, this.#cursor += len)
   }
 
   send(socket: Socket) {
     const length_packet = new MinecraftPacket()
     length_packet.writeVarInt(this.buffer.length)
-    socket.write(Buffer.concat([length_packet.buffer, this.buffer]))
+
+    const mergedBuf = Buffer.concat([length_packet.buffer, this.buffer])
+    socket.write(mergedBuf)
   }
 }
 
