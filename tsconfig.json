@@ -20,7 +20,7 @@
     },
     "include": ["src"],
     "exclude": [
-        "src/deprecated", 
+        "deprecated", 
         "node_modules", 
         "dist",
         "test-pkg",

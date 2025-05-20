@@ -23,6 +23,7 @@ class MCAPI {
 }
 
 export * from './classes'
+export { MCAPIError } from './utils/MCAPIError.js'
 
 export {
   MCAPI,

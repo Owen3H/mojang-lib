@@ -103,7 +103,8 @@ class Requests {
         legacyPing.send(client)
       })
       
-      client.on('data', (data) => {
+      client.on('data', data => {
+        // TODO: Eh, should `_buffer` be exposed like this?
         totalReadingDataBuffer._buffer = Buffer.concat([totalReadingDataBuffer.buffer, data])
         client.end()
       })

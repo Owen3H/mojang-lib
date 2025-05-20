@@ -36,3 +36,4 @@ jspm_packages/
 # Custom Exclusions
 dist/
 test-pkg/
+deprecated/

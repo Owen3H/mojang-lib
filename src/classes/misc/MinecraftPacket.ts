@@ -2,16 +2,16 @@ import { Socket } from "net"
 
 /** 
  *  @internal
- *  Minecraft ping packet builder
+ *  Minecraft ping packet builder.
  *
- *  Also used the wiki.vg documentation about Handshaking
+ *  Also used the wiki.vg documentation about Handshaking.
  *  @see {@link https://wiki.vg/Protocol Minecraft Communication Protocol}
  *  @see {@link https://wiki.vg/Server_List_Ping Server List Ping}
  */
 class MinecraftPacket {
   _buffer = Buffer.from(new Array(1))
   get buffer() { return this._buffer }
-
+  
   _cursor = 0
   get cursor() { return this._cursor }
 
@@ -25,8 +25,11 @@ class MinecraftPacket {
   }
 
   addToBuffer = (num: number) => {
-    if (this.cursor + num > this.buffer.length) 
-      this._buffer = Buffer.concat([this.buffer, Buffer.from(new Array(num))])
+    const exceeds = (this.cursor + num) > this.buffer.length
+    if (!exceeds) return
+
+    // TODO: I'm not sure I like this. Consider changing.
+    this._buffer = Buffer.concat([this.buffer, Buffer.from(new Array(num))]) 
   }
 
   writeUByte(val: number) {
@@ -50,11 +53,13 @@ class MinecraftPacket {
   }
 
   readVarInt() {
+    let read: number
+
     let cursor = 1
     let value = 0
 
     do {
-      var read = this.buffer.readUInt8(this.cursor + cursor)
+      read = this.buffer.readUInt8(this.cursor + cursor)
       value |= (read & 0x7F) << cursor * 7
       cursor++
     } while ((read & 0b10000000) === 128)
