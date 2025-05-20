@@ -29,7 +29,8 @@ class MinecraftPacket {
     if (!exceeds) return
 
     // TODO: I'm not sure I like this. Consider changing.
-    this._buffer = Buffer.concat([this.buffer, Buffer.from(new Array(num))]) 
+    const buf = Buffer.from(new Array(num))
+    this._buffer = Buffer.concat([this.buffer, buf])
   }
 
   writeUByte(val: number) {
