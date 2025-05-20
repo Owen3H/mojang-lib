@@ -1,5 +1,5 @@
 import ServerPlayers from './ServerPlayers.js'
-import { default as servers } from '../../apis/Servers.js'
+import MCAPI_SERVERS from '../../apis/Servers.js'
 import { PlayerIdentity } from '../player/Player.js'
 
 const remove_start_end_spaces = (str: string) => str.replace(/^ {1,}| {1,}$/g, "")
@@ -136,7 +136,7 @@ class Server {
   }
 
   refresh = async () => {
-    const data = await servers.ping(this.#host, this.#port)
+    const data = await MCAPI_SERVERS.ping(this.#host, this.#port)
     this.#init(data as OnlineServer)
   }
 }

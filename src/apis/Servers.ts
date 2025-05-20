@@ -1,5 +1,5 @@
 import { Requests as reqs } from '../utils/requests.js'
-import Server, { OnlineServer, PingedServer } from '../classes/server/Server.js'
+import { Server, OnlineServer, PingedServer } from '../classes/server/Server.js'
 import { isNode } from '../utils/fn.js'
 
 class MCAPI_SERVERS {
